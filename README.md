@@ -1,9 +1,9 @@
 # Practice-2019
 Привет мир!  
-Я узнал про markdown.
+Я узнал про _markdown_.
 ***
 ## Markdown
-Вы тоже можете узнать про markdown из статей:
+Вы тоже можете узнать про _markdown_ из статей:
 - [статья 1](https://ru.wikipedia.org/wiki/Markdown)
 - [статья 2](https://en.wikipedia.org/wiki/Markdown)
 - [статья 3](https://guides.github.com/features/mastering-markdown/)
