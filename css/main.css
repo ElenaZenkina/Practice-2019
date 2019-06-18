@@ -5,3 +5,7 @@ body {
 h2 {
     color: green;
 }
+
+p {
+    border-color: grey;
+}
