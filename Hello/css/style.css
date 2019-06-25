@@ -12,7 +12,7 @@ h2, h3, h4 {
     color: #33495f;
 }
 
-p, li, span {
+p, li, span, .btn {
     font-family: Lato;
     color: #33495f;
 }
@@ -30,7 +30,7 @@ p, li, span {
     width: 100%;
     height: 295px;    
 }
-
+ 
 .header-left {
     background-color: white;
     width: 435px;
@@ -39,30 +39,27 @@ p, li, span {
     /*position: relative;*/
 }
 
-.photo {
-     background-image: url(/image/photo.png);
-     background-repeat: no-repeat;
-     background-position: 26px 12px;
-     /*height: 197px;*/
-     
- }
- .photo h2 {
+.name h2 {
       font-size: 29px;
       padding-top: 53px;
       padding-left: 187px;
       margin-bottom: 0px;
  }
-.photo p {
+.name p {
      font-size: 17px;
      margin-top: 6px;
      padding-left: 104px;
-     /*margin-bottom: 76px;*/
+     margin-bottom: 76px;
+}
+.photo {
+     background-image: url(/image/photo.png);
+     background-repeat: no-repeat;
+     background-position: 26px 12px;
 }
 
 .items {
      /*position: absolute;
      top: 50px;*/
-     /*width: 100%;*/
      font-size: 0;
      display: inline-block;
      /*vertical-align: bottom;*/
@@ -183,22 +180,23 @@ p, li, span {
 .about-right {
     float: right;
     margin-right: 30px;
-    width: 300px;
+    width: 280px;
     height: 211px;
     border-bottom: 1px solid #788695;
 }
 
 .about-right p {
      font-size: 22px;
-     margin-top: 105px;
-     margin: 105px 0;
+     margin: 105px 0 19px;
+     text-align: justify;
  }
 
 .about-right a {
+    display: block;
     text-decoration: none;
+    text-align: justify;
     color: #fa5351;
     font-size: 22px;
-    width: 300px;
 }
 
 
@@ -238,13 +236,17 @@ p, li, span {
 .job {
      background: white;
      padding: 1px;
-     margin-bottom: 30px;
+     margin-bottom: 32px;
+     border-radius: 5px;
+}
+.job span {
+     color: #9ea7b4;
 }
 
 .job h3 {
      text-align: left;
      padding-top: 3px;
-     padding-left: 20px;
+     padding-left: 22px;
      font-size: 25px;
      margin-bottom: 0px;
 }
@@ -268,7 +270,7 @@ p, li, span {
      list-style: none;
      text-align: left;
      padding-left: 30px;
-     line-height: 190%;
+     line-height: 210%;
      font-size: 16px;
 }
    
@@ -277,28 +279,105 @@ p, li, span {
      padding-right: 14px;
 }
 
-.job .secret-velvet {
-     height: 500px;
+/*.job .secret-velvet {
+     height: 600px;
+}*/
+
+.job .job-about-sv {     
+     text-align: left;
+     margin-top: 33px;
+     margin-bottom: 22px;
 }
 
-.job .cortix {
-     height: 500px;
+.job-about-sv .map {
+     padding-left: 30px;
+     /*background-image: url(/Image/map.png);
+     background-repeat: no-repeat;
+     background-position: 0px 0px;*/
 }
 
-.job-buttom1 {
-     display: inline-block;
-     margin: 10px;
-     background-color: #27ae60;
-     border-radius: 6px;
-     width: 150px;
-     height: 100px;
+.job-about-sv .flash {
+     padding-left: 51px;
+}
 
+.btn {
+     display: inline-block;     
+     width: 215px;
+     height: 28px;
+     color: #fff; 
+     text-decoration: none; 
+     text-align: center;
+     padding-top: 10px;
+     border-radius: 3px; 
 }
-.btn1 {
-     text-decoration: none;
-     color: white; 
+
+.btn-sv {
+     background: #16c4ec;
+     margin-left: 80px;
 }
-.icom-map {
+
+.cortix h4 {
+     margin-bottom: -5px;
+}
+
+.job .job-about-co {     
+     text-align: left;
+     margin-top: 33px;
+     margin-bottom: 22px;
+}
+
+.job-about-co .map {
+     padding-left: 30px;
+}
+
+.job-about-co .flash {
+     padding-left: 45px;
+}
+
+.btn-co {
+     background: #16c4ec;
+     margin-left: 95px;
+}
+
+.job .job-about-ad {     
+     text-align: left;
+     margin-top: 20px;
+     margin-bottom: 22px;
+}
+
+.job-about-ad .map {
+     padding-left: 28px;
+}
+
+.job-about-ad .flash {
+     padding-left: 51px;
+}
+
+.btn-ade {
+     background: #b0bbca;
+     margin-left: 70px;
+}
+
+.job .job-about-it {     
+     text-align: left;
+     margin-top: 30px;
+     margin-bottom: 22px;
+}
+
+.job-about-it .map {
+     padding-left: 30px;
+}
+
+.job-about-it .flash {
+     padding-left: 45px;
+}
+
+.btn-it {
+     background: #b0bbca;
+     margin-left: 95px;
+}
+
+/*.icom-map {
      display: inline-block;
   width: 15px;
   height: 15px;
@@ -307,12 +386,284 @@ p, li, span {
   background-image: url("/Image/map.png");
   background-repeat: no-repeat;
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
-}
+}*/
 
 .education {
      background: #dbe1e8;
      padding: 1px;
      margin-bottom: 30px;
+     border-radius: 5px;
+     text-align: left;
+}
+
+.education span {
+     color: #6d8298;
+}
+
+.education h3 {
+     margin-top: 28px;
+     margin-bottom: 0px;
+     padding-left: 24px;
+     font-size: 22px;
+     font-weight: 500;
+}
+.education span {
+     font-size: 13px;
+     font-weight: 500;
+}
+
+.education h3 span {
+     margin-top: 30px;     
+     padding-left: 12px;
+     font-size: 15px;
+     font-weight: 500;
+}
+
+.education h4 {
+     color: #00b9d8;
+     margin-top: 3px;
+     margin-bottom: 15px;
+     padding-left: 24px;
+     font-size: 18px;
+     font-weight: 500;     
+}
+
+.education-yelp {     
+     margin-top: 28px;
+     margin-bottom: 24px;
+}
+
+.education-yelp .map {
+     padding-left: 24px;
+}
+
+.education-yelp .flash {
+     padding-left: 65px;
+}
+
+.btn-yelp {
+     background: #10cdc1;
+     margin-left: 82px;
+}
+
+.education-qoqa {     
+     margin-top: 29px;
+     margin-bottom: 26px;
+}
+
+.education-qoqa .map {
+     padding-left: 24px;
+}
+
+.education-qoqa .flash {
+     padding-left: 65px;
+}
+
+.btn-qoqa {
+     background: #10cdc1;
+     margin-left: 74px;
+}
+
+.dotted {
+     background-color: #eaedf1;
+     border-top: 2px dotted #c2cad4;
+}
+
+.education-cefire {
+     margin-top: -6px;
+     margin-bottom: 13px;
+}
+
+.cefire h4 {
+     color: #04bca6;
+}
+
+.education-cefire .map {
+     padding-left: 24px;
+}
+
+.education-cefire .flash {
+     padding-left: 65px;
+}
+
+.ecole h4 {
+     color: #04bca6;
+}
+
+.education-ecole {     
+     margin-top: -8px;
+     margin-bottom: 13px;
+}
+
+.education-ecole .map {
+     padding-left: 24px;
+}
+
+.education-ecole .flash {
+     padding-left: 52px;
+}
+
+
+.rating {
+     display: inline-block;
+     padding-left: 210px;
+}
+
+.rating span {
+     font-size: 20px;
+}
+
+.hobby {
+     background: white;
+     margin-top: 0px;
+     /*margin-bottom: 32px;*/
+     border-radius: 5px;
+}
+
+.hobby-photo {
+     display: inline-block;     
+     width: 100px;
+     height: 80px;
+     margin: 20px auto 0;
+     padding-top: 2px;
+     background-image: url("/Image/hobby.png");
+     background-repeat: no-repeat;
+}
+.hobby-photo-1 {
+     background-position: 5px 0px;
+}
+.hobby-photo-2 {
+     background-position: -99px 0px;
+}
+.hobby-photo-3 {
+     background-position: -203px 0px;
+}
+.hobby-photo-4 {
+     background-position: -307px 0px;
+}
+.hobby-photo-5 {
+     background-position: -411px 0px;
+}
+.hobby-photo-6 {
+     background-position: -515px 0px;
+}
+
+.sign {
+     text-align: left;
+}
+
+.sign span {
+     color: #9ea7b4;
+     font-size: 13px;
+     text-transform: uppercase;
+}
+.sign .sign1 {
+     padding-left: 20px;
+}
+.sign .sign2 {
+     padding-left: 30px;
+}
+.sign .sign3 {
+     padding-left: 30px;
+}
+.sign .sign4 {
+     padding-left: 20px;
+}
+.sign .sign5 {
+     padding-left: 15px;
+}
+.sign .sign6 {
+     padding-left: 18px;
+}
+
+.table {
+     display: table;
+     padding: 0;
+     margin-top: 25px;
+     margin-left: 20px;
+}
+   
+.row {
+     display: table-row;
+}
+   
+.cell {
+     display: table-cell;
+}
+
+.cell p {
+     margin: 14px 3px 6px;
+     text-align: left;
+}
+
+.cell-right {
+     padding-left: 50px;
+}
+   
+
+.hobby .progress {
+     margin: 0 auto;
+     width: 268px;
+   }
+   
+   .progress {
+     padding: 1px;
+     background: rgba(0, 0, 0, 0.25);
+     border-radius: 6px;
+     -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
+     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
+   }
+   
+   .progress-bar {
+     height: 14px;
+     border-radius: 4px;
+        background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+     background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+     background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+     background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+     -webkit-transition: 0.4s linear;
+     -moz-transition: 0.4s linear;
+     -o-transition: 0.4s linear;
+     transition: 0.4s linear;
+     -webkit-transition-property: width, background-color;
+     -moz-transition-property: width, background-color;
+     -o-transition-property: width, background-color;
+     transition-property: width, background-color;
+     -webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 1px rgba(255, 255, 255, 0.1);
+     box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 1px rgba(255, 255, 255, 0.1);
+   }
+
+.progress > .bar1 > .progress-bar {
+    width: 80%;
+    background-color: #10cdc1;
+ }
+ .progress > .bar2 > .progress-bar {
+     width: 55%;
+     background-color: #10cdc1;
+ }
+ .progress > .bar3 > .progress-bar {
+     width: 95%;
+     background-color: #10cdc1;
+}
+.progress > .bar4 > .progress-bar {
+     width: 85%;
+     background-color: #10cdc1;
+}
+.progress > .bar5 > .progress-bar {
+     width: 60%;
+     background-color: #16c4ec;
+}
+.progress > .bar6 > .progress-bar {
+     width: 75%;
+     background-color: #16c4ec;
+}
+.progress > .bar7 > .progress-bar {
+     width: 55%;
+     background-color: #16c4ec;
+}
+.progress > .bar8 > .progress-bar {
+     width: 60%;
+     background-color: #16c4ec;
 }
  
 .clear {
@@ -322,5 +673,24 @@ p, li, span {
 .footer {
      width: 100%;
      height: 40px;
-    
+     margin: 0;
+     padding: 0;
+}
+
+.footer span {
+     display: inline-block;
+}
+
+.footer .english {
+     font-size: 18px;
+     font-style: italic;
+     vertical-align: top;
+     padding-top: 30px;
+}
+
+.footer .commas {
+     font-size: 120px;
+     font-family: 'Times New Roman', Times, serif;
+     /*padding-right: 20px;*/
+     display: inline-block;
 }
