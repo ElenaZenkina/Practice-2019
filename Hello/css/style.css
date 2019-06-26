@@ -1,9 +1,7 @@
 body {
     background: #eaedf1;
-    color: #000;
     margin: 0;
-    padding: 0;
-     
+    padding: 0;     
 }
 
 h2, h3, h4 {
@@ -12,7 +10,7 @@ h2, h3, h4 {
     color: #33495f;
 }
 
-p, li, span, .btn {
+p, li, span, a, .btn {
     font-family: Lato;
     color: #33495f;
 }
@@ -145,12 +143,16 @@ p, li, span, .btn {
      height: 50px;
 }
 
+.about-social a {
+     height:100%; 
+     display:block;
+}
+
 .social {
      display: inline-block;
      width: 50px;
      height: 50px;
      margin-right: 21px;   
-     vertical-align: middle;   
      background-image: url("/Image/social.png");
      background-repeat: no-repeat;
 }
@@ -175,33 +177,34 @@ p, li, span, .btn {
 
 .about-right {
     float: right;
+    margin-top: 105px;
     margin-right: 30px;
+    padding-bottom: 6px;
     width: 280px;
-    height: 211px;
+    height: 100px;
+    font-size: 22px;
     border-bottom: 1px solid #788695;
 }
 
-.about-right p {
-     font-size: 22px;
-     margin: 105px 0 19px;
+.about-right a {     
      text-align: justify;
+     display: block;
+     text-decoration: none;  
  }
 
-.about-right a {
-    display: block;
-    text-decoration: none;    
-    letter-spacing: 3px;
+.site a {
+    padding-top: 18px;
+    letter-spacing: 2px;
     color: #fa5351;
-    font-size: 22px;
-}
+    margin-bottom: 20px;
+ }
 
 
 
 .content {
      background: inherit;
      height: 1200px;
-     /* Линия цвета фона для не схлопывания margin*/ 
-     border-top: 1px solid #eaedf1;
+      /*border-top: 1px solid #eaedf1;*/
      margin-top: 36px;
 }
 
@@ -281,19 +284,31 @@ p, li, span, .btn {
 
 .job .job-about-sv {     
      text-align: left;
-     margin-top: 33px;
+     margin-top: 35px;
      margin-bottom: 22px;
 }
 
+.job-about-sv .map a {
+     text-decoration: none;
+     color: #9ea7b4;
+}
+
 .job-about-sv .map {
-     padding-left: 30px;
-     /*background-image: url(/Image/map.png);
+     display: inline-block;
+     margin-left: 28px;
+     padding-left: 18px;
+     background-image: url(/Image/map.png);
      background-repeat: no-repeat;
-     background-position: 0px 0px;*/
+     background-position: 0px 1px;
 }
 
 .job-about-sv .flash {
-     padding-left: 51px;
+     margin-left: 62px;
+     margin-right: 2px;
+     padding-left: 22px;
+     background-image: url(/Image/flash.png);
+     background-repeat: no-repeat;
+     background-position: 0px 5px;
 }
 
 .btn {
@@ -303,13 +318,13 @@ p, li, span, .btn {
      color: #fff; 
      text-decoration: none; 
      text-align: center;
-     padding-top: 10px;
+     padding-top: 9px;
      border-radius: 3px; 
 }
 
 .btn-sv {
      background: #16c4ec;
-     margin-left: 80px;
+     margin-left: 77px;
 }
 
 .cortix h4 {
@@ -322,12 +337,27 @@ p, li, span, .btn {
      margin-bottom: 22px;
 }
 
+.job-about-co .map a {
+     text-decoration: none;
+     color: #9ea7b4;
+}
+
 .job-about-co .map {
-     padding-left: 30px;
+     display: inline-block;
+     margin-left: 29px;
+     padding-left: 20px;
+     background-image: url(/Image/map.png);
+     background-repeat: no-repeat;
+     background-position: 0px 2px;
 }
 
 .job-about-co .flash {
-     padding-left: 45px;
+     margin-left: 52px;
+     margin-right: -5px;
+     padding-left: 32px;
+     background-image: url(/Image/flash.png);
+     background-repeat: no-repeat;
+     background-position: 0px 5px;
 }
 
 .btn-co {
@@ -341,12 +371,27 @@ p, li, span, .btn {
      margin-bottom: 22px;
 }
 
+.job-about-ad .map a {
+     text-decoration: none;
+     color: #9ea7b4;
+}
+
 .job-about-ad .map {
-     padding-left: 28px;
+     display: inline-block;
+     margin-left: 28px;
+     padding-left: 20px;
+     background-image: url(/Image/map.png);
+     background-repeat: no-repeat;
+     background-position: 0px 0px;
 }
 
 .job-about-ad .flash {
-     padding-left: 51px;
+     margin-left: 60px;
+     margin-right: 5px;
+     padding-left: 22px;
+     background-image: url(/Image/flash.png);
+     background-repeat: no-repeat;
+     background-position: 0px 5px;
 }
 
 .btn-ade {
@@ -356,33 +401,37 @@ p, li, span, .btn {
 
 .job .job-about-it {     
      text-align: left;
-     margin-top: 30px;
+     margin-top: -7px;
      margin-bottom: 22px;
 }
 
+.job-about-it .map a {
+     text-decoration: none;
+     color: #9ea7b4;
+}
+
 .job-about-it .map {
-     padding-left: 30px;
+     display: inline-block;
+     margin-left: 28px;
+     padding-left: 18px;
+     background-image: url(/Image/map.png);
+     background-repeat: no-repeat;
+     background-position: 0px 2px;
 }
 
 .job-about-it .flash {
-     padding-left: 45px;
+     margin-left: 80px;
+     margin-right: -40px;
+     padding-left: 22px;
+     background-image: url(/Image/flash.png);
+     background-repeat: no-repeat;
+     background-position: 0px 5px;
 }
 
 .btn-it {
      background: #b0bbca;
      margin-left: 95px;
 }
-
-/*.icom-map {
-     display: inline-block;
-  width: 15px;
-  height: 15px;
-
-  vertical-align: bottom;
-  background-image: url("/Image/map.png");
-  background-repeat: no-repeat;
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
-}*/
 
 .education {
      background: #dbe1e8;
@@ -397,7 +446,7 @@ p, li, span, .btn {
 }
 
 .education h3 {
-     margin-top: 28px;
+     margin-top: 29px;
      margin-bottom: 0px;
      padding-left: 24px;
      font-size: 22px;
@@ -419,22 +468,43 @@ p, li, span, .btn {
      color: #00b9d8;
      margin-top: 3px;
      margin-bottom: 15px;
-     padding-left: 24px;
+     padding-left: 22px;
      font-size: 18px;
      font-weight: 500;     
 }
 
 .education-yelp {     
-     margin-top: 28px;
+     margin-top: 29px;
      margin-bottom: 24px;
 }
 
+.education span, .map {
+     color: #6d8298;
+     font-size: 13px;
+     font-weight: 500;
+}
+
+.education-yelp .map a {
+     text-decoration: none;
+     color: #9ea7b4;
+}
+
 .education-yelp .map {
-     padding-left: 24px;
+     display: inline-block;
+     margin-left: 22px;
+     padding-left: 18px;
+     background-image: url(/Image/map.png);
+     background-repeat: no-repeat;
+     background-position: 0px 0px;
 }
 
 .education-yelp .flash {
-     padding-left: 65px;
+     margin-left: 62px;
+     margin-right: 5px;
+     padding-left: 22px;
+     background-image: url(/Image/flash.png);
+     background-repeat: no-repeat;
+     background-position: 0px 3px;
 }
 
 .btn-yelp {
@@ -447,12 +517,27 @@ p, li, span, .btn {
      margin-bottom: 26px;
 }
 
+.education-qoqa .map a {
+     text-decoration: none;
+     color: #9ea7b4;
+}
+
 .education-qoqa .map {
-     padding-left: 24px;
+     display: inline-block;
+     margin-left: 22px;
+     padding-left: 18px;
+     background-image: url(/Image/map.png);
+     background-repeat: no-repeat;
+     background-position: 0px 0px;
 }
 
 .education-qoqa .flash {
-     padding-left: 65px;
+     margin-left: 62px;
+     margin-right: 5px;
+     padding-left: 22px;
+     background-image: url(/Image/flash.png);
+     background-repeat: no-repeat;
+     background-position: 0px 3px;
 }
 
 .btn-qoqa {
@@ -466,7 +551,7 @@ p, li, span, .btn {
 }
 
 .education-cefire {
-     margin-top: -6px;
+     margin-top: -8px;
      margin-bottom: 13px;
 }
 
@@ -487,8 +572,8 @@ p, li, span, .btn {
 }
 
 .education-ecole {     
-     margin-top: -8px;
-     margin-bottom: 13px;
+     margin-top: -9px;
+     margin-bottom: 18px;
 }
 
 .education-ecole .map {
@@ -512,15 +597,15 @@ p, li, span, .btn {
 .hobby {
      background: white;
      margin-top: 0px;
-     /*margin-bottom: 32px;*/
      border-radius: 5px;
+     height: 405px;
 }
 
 .hobby-photo {
      display: inline-block;     
      width: 100px;
      height: 80px;
-     margin: 20px auto 0;
+     margin: 16px auto 0;
      padding-top: 2px;
      background-image: url("/Image/hobby.png");
      background-repeat: no-repeat;
@@ -673,20 +758,17 @@ p, li, span, .btn {
      padding: 0;
 }
 
-.footer span {
+.footer a {
      display: inline-block;
-}
-
-.footer .english {
-     font-size: 18px;
+     text-decoration: none;
+     font-size: 19px;
      font-style: italic;
      vertical-align: top;
-     padding-top: 30px;
+     padding: 26px 7px 0px 11px;
 }
 
 .footer .commas {
-     font-size: 120px;
+     font-size: 106px;
      font-family: 'Times New Roman', Times, serif;
-     /*padding-right: 20px;*/
      display: inline-block;
 }
