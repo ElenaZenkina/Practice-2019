@@ -36,52 +36,48 @@ p, li, span, .btn {
     width: 435px;
     height: 100%;
     float: left;
-    /*position: relative;*/
 }
 
-.name h2 {
+.photo {
+     background-image: url(/Image/photo.png);
+     background-repeat: no-repeat;
+     background-position: 26px 12px;
+     height: 191px;
+}
+
+.photo h2 {
       font-size: 29px;
       padding-top: 53px;
       padding-left: 187px;
       margin-bottom: 0px;
  }
-.name p {
+.photo p {
      font-size: 17px;
      margin-top: 6px;
      padding-left: 104px;
      margin-bottom: 76px;
 }
-.photo {
-     background-image: url(/image/photo.png);
-     background-repeat: no-repeat;
-     background-position: 26px 12px;
-}
 
 .items {
-     /*position: absolute;
-     top: 50px;*/
      font-size: 0;
      display: inline-block;
-     /*vertical-align: bottom;*/
-     /*background-color: #ecf0f1;
-     /*box-shadow: 0 0 3px #999999;*/
 }
    
 .item {
     text-transform: uppercase;
     display: inline-block;
-    /*vertical-align: bottom;*/
     width: 108px;
-    height: 79px;
+    height: 76px;
     margin: 0;
     padding: 0;
+    padding-top: 4px;
 }
 
 .item-age {
     background-color: #16c4ec;
     background-image: url(/image/about1.png);
     background-repeat: no-repeat;     
-    background-position: 50% 20px;
+    background-position: 50% 23px;
 
 }
 
@@ -89,21 +85,21 @@ p, li, span, .btn {
      background-color: #fa5351;
      background-image: url(/image/about2.png);
      background-repeat: no-repeat;
-     background-position: 50% 15px;
+     background-position: 50% 19px;
 }
 
 .item-permis {
      background-color: #10cdc1;
      background-image: url(/image/about3.png);
      background-repeat: no-repeat;
-     background-position: 50% 15px;
+     background-position: 50% 22px;
 }
 
 .item-smoke {
      background-color: #33495f;
      background-image: url(/image/about4.png);
      background-repeat: no-repeat;
-     background-position: 50% 15px;
+     background-position: 50% 21px;
 }
 .str {
      color: white;
@@ -153,7 +149,7 @@ p, li, span, .btn {
      display: inline-block;
      width: 50px;
      height: 50px;
-     margin-right: 19px;   
+     margin-right: 21px;   
      vertical-align: middle;   
      background-image: url("/Image/social.png");
      background-repeat: no-repeat;
@@ -165,16 +161,16 @@ p, li, span, .btn {
      background-position: -50px 0;
 }
 .social-bh {
-     background-position: -100px 0;
+     background-position: -99px 0;
 }
 .social-ig {
-     background-position: -150px 0;
+     background-position: -148px 0;
 }
 .social-bl {
-     background-position: -200px 0;
+     background-position: -193px 0;
 }
 .social-in {
-     background-position: -250px 0;
+     background-position: -254px 0;
 }
 
 .about-right {
@@ -193,8 +189,8 @@ p, li, span, .btn {
 
 .about-right a {
     display: block;
-    text-decoration: none;
-    text-align: justify;
+    text-decoration: none;    
+    letter-spacing: 3px;
     color: #fa5351;
     font-size: 22px;
 }
