@@ -183,15 +183,45 @@ function updateEntities(dt) {
 
     // Update all the enemies
     for(var i=0; i<enemies.length; i++) {
-        enemies[i].pos[0] -= enemySpeed * dt;
-        enemies[i].sprite.update(dt);
 
         // Offset the enemy if it collides with megaliths
-        /*if (collisionWithMegaliths([enemies[i].pos[0], enemies[i].pos[1]], enemies[i].sprite.size)) {
+        var dy = enemySpeed * dt;
+        if (collisionWithMegaliths([enemies[i].pos[0]-dy, enemies[i].pos[1]], enemies[i].sprite.size)) {
+            
             // Change ordinate
-            bullets.splice(i, 1);
-            i--;
-        }*/
+            if(typeof enemies[i].bend == "undefined") {
+                enemies[i].bend = 'up';                
+            }
+
+            // Arrive borders
+            if ( (enemies[i].bend == 'up') && (enemies[i].pos[1] - dy < 0) ) {
+                enemies[i].bend = 'down';
+            }
+            if ( (enemies[i].bend == 'down') && (enemies[i].pos[1] + dy > canvas.height) ) {
+                enemies[i].bend = 'up';
+            }
+
+            if ( (enemies[i].bend == 'up') && (collisionWithMegaliths([enemies[i].pos[0], enemies[i].pos[1]-dy], enemies[i].sprite.size))) {
+                enemies[i].bend = 'down';
+            }
+            if ( (enemies[i].bend == 'down') && (collisionWithMegaliths([enemies[i].pos[0], enemies[i].pos[1]+dy], enemies[i].sprite.size))) {
+                enemies[i].bend = 'up';
+            }
+
+            if (enemies[i].bend == 'up') {
+                enemies[i].pos[1] -= enemySpeed * dt;
+            }
+            else {
+                enemies[i].pos[1] += enemySpeed * dt;
+            }
+        }
+        else {
+            enemies[i].pos[0] -= enemySpeed * dt;
+            delete enemies[i].bend;
+        }
+
+        /*enemies[i].pos[0] -= enemySpeed * dt;*/
+        enemies[i].sprite.update(dt);        
 
         // Remove if offscreen
         if(enemies[i].pos[0] + enemies[i].sprite.size[0] < 0) {
