@@ -59,6 +59,7 @@ var player = {
 var bullets = [];
 var enemies = [];
 var explosions = [];
+var megaliths = [];
 
 var lastFire = Date.now();
 var gameTime = 0;
@@ -97,20 +98,37 @@ function update(dt) {
 };
 
 function handleInput(dt) {
-    if(input.isDown('DOWN') || input.isDown('s')) {
-        player.pos[1] += playerSpeed * dt;
+    var dx;
+
+    if(input.isDown('DOWN') || input.isDown('s')) {        
+        dx = player.pos[1] + (playerSpeed * dt);
+        if (!collisionWithMegaliths([player.pos[0], dx], player.sprite.size) ) {
+            player.pos[1] = dx;
+        }
     }
 
     if(input.isDown('UP') || input.isDown('w')) {
-        player.pos[1] -= playerSpeed * dt;
+        dx = player.pos[1] - (playerSpeed * dt);
+        if (!collisionWithMegaliths([player.pos[0], dx], player.sprite.size) ) {
+            player.pos[1] = dx;
+        }
+        /*player.pos[1] -= playerSpeed * dt;*/
     }
 
     if(input.isDown('LEFT') || input.isDown('a')) {
-        player.pos[0] -= playerSpeed * dt;
+        dx = player.pos[0] - (playerSpeed * dt);
+        if (!collisionWithMegaliths([dx, player.pos[1]], player.sprite.size) ) {
+            player.pos[0] = dx;
+        }
+        /*player.pos[0] -= playerSpeed * dt;*/
     }
 
     if(input.isDown('RIGHT') || input.isDown('d')) {
-        player.pos[0] += playerSpeed * dt;
+        dx = player.pos[0] + (playerSpeed * dt);
+        if (!collisionWithMegaliths([dx, player.pos[1]], player.sprite.size) ) {
+            player.pos[0] = dx;
+        }
+        /*player.pos[0] += playerSpeed * dt;*/
     }
 
     if(input.isDown('SPACE') &&
@@ -154,12 +172,26 @@ function updateEntities(dt) {
             bullets.splice(i, 1);
             i--;
         }
+
+        // Remove the bullet if it collides with megaliths
+        if (collisionWithMegaliths([bullet.pos[0], bullet.pos[1]], bullet.sprite.size)) {
+             bullets.splice(i, 1);
+             i--;
+         }
+
     }
 
     // Update all the enemies
     for(var i=0; i<enemies.length; i++) {
         enemies[i].pos[0] -= enemySpeed * dt;
         enemies[i].sprite.update(dt);
+
+        // Offset the enemy if it collides with megaliths
+        /*if (collisionWithMegaliths([enemies[i].pos[0], enemies[i].pos[1]], enemies[i].sprite.size)) {
+            // Change ordinate
+            bullets.splice(i, 1);
+            i--;
+        }*/
 
         // Remove if offscreen
         if(enemies[i].pos[0] + enemies[i].sprite.size[0] < 0) {
@@ -177,6 +209,11 @@ function updateEntities(dt) {
             explosions.splice(i, 1);
             i--;
         }
+    }
+
+    // Update all the megaliths
+    for (var i=0; i < megaliths.length; i++) {
+        megaliths[i].sprite.update(dt);
     }
 }
 
@@ -262,12 +299,13 @@ function render() {
 
     // Render the player if the game isn't over
     if(!isGameOver) {
-        renderEntity(player);
+        renderEntity(player);        
     }
 
     renderEntities(bullets);
     renderEntities(enemies);
     renderEntities(explosions);
+    renderEntities(megaliths);
 };
 
 function renderEntities(list) {
@@ -300,6 +338,45 @@ function reset() {
 
     enemies = [];
     bullets = [];
+    megaliths = [];
 
     player.pos = [50, canvas.height / 2];
+
+    initMegaliths();
+}
+
+
+// My additions
+
+function initMegaliths () {
+    var megalithNumber = getRandomInt (4, 8);
+
+    for (var i = 0; i < megalithNumber; i++ ) {
+
+        var x, y;
+        do {
+            x = Math.random() * (canvas.width - 58);
+            /*x = 20;*/
+            y = Math.random() * (canvas.height - 55);
+        } while (boxCollides([x, y], [58, 55], player.pos, player.sprite.size) ||
+                (collisionWithMegaliths ([x, y], [58, 55])) );
+
+        megaliths.push({
+            pos: [x, y],
+            sprite: new Sprite('img/sprites.png', [0, 212], [58, 55], 4, [0, 1], 'vertical')
+        });
+    }
+}
+
+function collisionWithMegaliths ([x1, y1], size1) {
+    for (var i = 0; i < megaliths.length; i++) {
+        if (boxCollides([x1, y1], size1, megaliths[i].pos, megaliths[i].sprite.size)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function getRandomInt (min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 };
