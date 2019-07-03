@@ -107,14 +107,14 @@ function handleInput(dt) {
 
     if(input.isDown('DOWN') || input.isDown('s')) {        
         dx = player.pos[1] + (playerSpeed * dt);
-        if (!collisionWithMegaliths([player.pos[0], dx], player.sprite.size) ) {
+        if (!collisionWithUnits([player.pos[0], dx], player.sprite.size, megaliths) ) {
             player.pos[1] = dx;
         }
     }
 
     if(input.isDown('UP') || input.isDown('w')) {
         dx = player.pos[1] - (playerSpeed * dt);
-        if (!collisionWithMegaliths([player.pos[0], dx], player.sprite.size) ) {
+        if (!collisionWithUnits([player.pos[0], dx], player.sprite.size, megaliths) ) {
             player.pos[1] = dx;
         }
         /*player.pos[1] -= playerSpeed * dt;*/
@@ -122,7 +122,7 @@ function handleInput(dt) {
 
     if(input.isDown('LEFT') || input.isDown('a')) {
         dx = player.pos[0] - (playerSpeed * dt);
-        if (!collisionWithMegaliths([dx, player.pos[1]], player.sprite.size) ) {
+        if (!collisionWithUnits([dx, player.pos[1]], player.sprite.size, megaliths) ) {
             player.pos[0] = dx;
         }
         /*player.pos[0] -= playerSpeed * dt;*/
@@ -130,7 +130,7 @@ function handleInput(dt) {
 
     if(input.isDown('RIGHT') || input.isDown('d')) {
         dx = player.pos[0] + (playerSpeed * dt);
-        if (!collisionWithMegaliths([dx, player.pos[1]], player.sprite.size) ) {
+        if (!collisionWithUnits([dx, player.pos[1]], player.sprite.size, megaliths) ) {
             player.pos[0] = dx;
         }
         /*player.pos[0] += playerSpeed * dt;*/
@@ -179,7 +179,7 @@ function updateEntities(dt) {
         }
 
         // Remove the bullet if it collides with megaliths
-        if (collisionWithMegaliths([bullet.pos[0], bullet.pos[1]], bullet.sprite.size)) {
+        if (collisionWithUnits([bullet.pos[0], bullet.pos[1]], bullet.sprite.size, megaliths)) {
              bullets.splice(i, 1);
              i--;
          }
@@ -191,7 +191,7 @@ function updateEntities(dt) {
 
         // Offset the enemy if it collides with megaliths
         var dy = enemySpeed * dt;
-        if (collisionWithMegaliths([enemies[i].pos[0]-dy, enemies[i].pos[1]], enemies[i].sprite.size)) {
+        if (collisionWithUnits([enemies[i].pos[0]-dy, enemies[i].pos[1]], enemies[i].sprite.size, megaliths)) {
             
             // Change ordinate
             if(typeof enemies[i].bend == "undefined") {
@@ -206,10 +206,10 @@ function updateEntities(dt) {
                 enemies[i].bend = 'up';
             }
 
-            if ( (enemies[i].bend == 'up') && (collisionWithMegaliths([enemies[i].pos[0], enemies[i].pos[1]-dy], enemies[i].sprite.size))) {
+            if ( (enemies[i].bend == 'up') && (collisionWithUnits([enemies[i].pos[0], enemies[i].pos[1]-dy], enemies[i].sprite.size, megaliths))) {
                 enemies[i].bend = 'down';
             }
-            if ( (enemies[i].bend == 'down') && (collisionWithMegaliths([enemies[i].pos[0], enemies[i].pos[1]+dy], enemies[i].sprite.size))) {
+            if ( (enemies[i].bend == 'down') && (collisionWithUnits([enemies[i].pos[0], enemies[i].pos[1]+dy], enemies[i].sprite.size, megaliths))) {
                 enemies[i].bend = 'up';
             }
 
@@ -418,16 +418,13 @@ function reset() {
 // My additions
 
 function initMegaliths () {
-    var megalithNumber = getRandomInt (4, 8);
-
-    for (var i = 0; i < megalithNumber; i++ ) {
-
+    for (var i = 0; i < getRandomInt (4, 8); i++ ) {
         var x, y;
         do {
             x = Math.random() * (canvas.width - 58);
             y = Math.random() * (canvas.height - 55);
         } while (boxCollides([x, y], [58, 55], player.pos, player.sprite.size) ||
-                (collisionWithMegaliths ([x, y], [58, 55])) );
+                (collisionWithUnits ([x, y], [58, 42], megaliths)) );
 
         megaliths.push({
             pos: [x, y],
@@ -438,14 +435,13 @@ function initMegaliths () {
 
 function initMannas () {
     for (var i = 0; i < getRandomInt (4, 12); i++ ) {
-
         var x, y;
         do {
             x = Math.random() * (canvas.width - 58);
             y = Math.random() * (canvas.height - 42);
         } while (boxCollides([x, y], [58, 42], player.pos, player.sprite.size) ||
-                (collisionWithUnits ([x, y], [58, 42], megaliths)) /*||
-                (collisionWithUnits ([x, y], [58, 42], units))*/ );
+                (collisionWithUnits ([x, y], [58, 42], megaliths)) ||
+                (collisionWithUnits ([x, y], [58, 42], mannas)) );
 
         mannas.push({
             pos: [x, y],
@@ -454,18 +450,9 @@ function initMannas () {
     }
 }
 
-function collisionWithMegaliths ([x1, y1], size1) {
-    for (var i = 0; i < megaliths.length; i++) {
-        if (boxCollides([x1, y1], size1, megaliths[i].pos, megaliths[i].sprite.size)) {
-            return true;
-        }
-    }
-    return false;
-}
-
-function collisionWithUnits ([x, y], size, units) {
+function collisionWithUnits ([x1, y1], size1, units) {
     for (var i = 0; i < units.length; i++) {
-        if (boxCollides([x, y], size, units[i].pos, units[i].sprite.size)) {
+        if (boxCollides([x1, y1], size1, units[i].pos, units[i].sprite.size)) {
             return true;
         }
     }
