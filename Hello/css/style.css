@@ -6,13 +6,14 @@ body {
 
 h2, h3, h4 {
     font-family: Signika, Signika Negative;
-    font-weight: bold;
+    font-weight: 500;
     color: #33495f;
 }
 
 p, li, span, a, .btn {
     font-family: Lato;
     color: #33495f;
+    text-align: left;
 }
  
 .container {
@@ -34,38 +35,42 @@ p, li, span, a, .btn {
     width: 435px;
     height: 100%;
     float: left;
+    position: relative;
 }
 
-.photo {
+.image {
      background-image: url(/Image/photo.png);
      background-repeat: no-repeat;
-     background-position: 26px 12px;
-     height: 191px;
+     background-position: 26px 10px;
+     height: 160px;
+     width: 172px;
+     float: left;
 }
 
 .photo h2 {
-      font-size: 29px;
-      padding-top: 53px;
-      padding-left: 187px;
+      font-size: 30px;
+      padding-top: 52px;
+      padding-left: 184px;
       margin-bottom: 0px;
  }
 .photo p {
      font-size: 17px;
-     margin-top: 6px;
-     padding-left: 104px;
-     margin-bottom: 76px;
+     margin-top: 3px;
+     margin-left: 217px;
 }
 
 .items {
      font-size: 0;
-     display: inline-block;
+     position: absolute;
+     bottom: 0px;
+     left: 1px;
 }
    
 .item {
     text-transform: uppercase;
     display: inline-block;
     width: 108px;
-    height: 76px;
+    height: 75px;
     margin: 0;
     padding: 0;
     padding-top: 4px;
@@ -76,7 +81,6 @@ p, li, span, a, .btn {
     background-image: url(/image/about1.png);
     background-repeat: no-repeat;     
     background-position: 50% 23px;
-
 }
 
 .item-nation {
@@ -99,10 +103,11 @@ p, li, span, a, .btn {
      background-repeat: no-repeat;
      background-position: 50% 21px;
 }
-.str {
+.caption {
      color: white;
      margin-top: 40px;
      font-size: 14px;
+     text-align: center;
 }
 
 .header-right {
@@ -119,19 +124,19 @@ p, li, span, a, .btn {
 }
 
 .about-left h2 {
-     font-size: 37px;
-     font-weight: 600;
-     padding-top: 12px;
+     font-size: 39px;
+     padding-top: 10px;
+     padding-left: 3px;
+     margin-bottom: 0px;
 }
 
-.about-left .text {
+.about-left p {
      font-size: 18px;
-     line-height: 170%;
+     line-height: 172%;
      text-align: justify;
-     margin-top: -19px;
-     margin-bottom: 11px;
-     padding-left: 32px;
-     padding-right: 32px;
+     margin-top: 9px;
+     margin-bottom: 12px;
+     padding: 0 32px;
 }
 
 .about-important {
@@ -144,8 +149,8 @@ p, li, span, a, .btn {
 }
 
 .about-social a {
-     height:100%; 
-     display:block;
+     height: 100%; 
+     display: block;
 }
 
 .social {
@@ -186,25 +191,24 @@ p, li, span, a, .btn {
     border-bottom: 1px solid #788695;
 }
 
-.about-right a {     
-     text-align: justify;
-     display: block;
-     text-decoration: none;  
+.email a {     
+    text-decoration: none;
  }
 
+.site {
+    margin-top: 17px;
+}
 .site a {
-    padding-top: 18px;
+    padding-top: 0px;
     letter-spacing: 2px;
     color: #fa5351;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
+    text-decoration: none;
  }
-
-
 
 .content {
      background: inherit;
      height: 1200px;
-      /*border-top: 1px solid #eaedf1;*/
      margin-top: 36px;
 }
 
@@ -218,11 +222,10 @@ p, li, span, a, .btn {
      background: inherit;
      float: left;
      width: 79px;
-     height: 100%;
-     
+     height: 100%;     
      background-image: url(/image/bar.png);
      background-repeat: no-repeat;
-     background-position: 3px -17px;
+     background-position: 3px -15px;
      
 }
 
@@ -245,7 +248,7 @@ p, li, span, a, .btn {
 .job h3 {
      text-align: left;
      padding-top: 3px;
-     padding-left: 22px;
+     padding-left: 25px;
      font-size: 25px;
      margin-bottom: 0px;
 }
@@ -253,7 +256,7 @@ p, li, span, a, .btn {
 .job h3 span {
      font-size: 18px;
      font-weight: 500;
-     padding-left: 10px; 
+     padding-left: 14px; 
 }
 
 .job h4 {
@@ -271,6 +274,7 @@ p, li, span, a, .btn {
      padding-left: 30px;
      line-height: 210%;
      font-size: 16px;
+     margin-bottom: 34px;
 }
    
 .job ul li:before {
@@ -278,37 +282,37 @@ p, li, span, a, .btn {
      padding-right: 14px;
 }
 
-/*.job .secret-velvet {
-     height: 600px;
-}*/
-
-.job .job-about-sv {     
+.job .job-about {     
      text-align: left;
-     margin-top: 35px;
-     margin-bottom: 22px;
+     margin-top: 0px;
+     margin-bottom: 23px;
 }
 
-.job-about-sv .map a {
+.job-about .map a {
      text-decoration: none;
      color: #9ea7b4;
 }
 
-.job-about-sv .map {
+.job-about .map {
      display: inline-block;
+     font-size: 15px;
      margin-left: 28px;
-     padding-left: 18px;
+     padding-left: 21px;
      background-image: url(/Image/map.png);
      background-repeat: no-repeat;
-     background-position: 0px 1px;
+     background-position: 0px 2px;
 }
 
-.job-about-sv .flash {
-     margin-left: 62px;
-     margin-right: 2px;
-     padding-left: 22px;
+.job-about .flash {
      background-image: url(/Image/flash.png);
      background-repeat: no-repeat;
      background-position: 0px 5px;
+}
+
+.job-about .date-sv {
+     margin-left: 51px;
+     margin-right: 2px;
+     padding-left: 21px;
 }
 
 .btn {
@@ -327,37 +331,18 @@ p, li, span, a, .btn {
      margin-left: 77px;
 }
 
+.cortix h3 span {
+     padding-left: 12px;
+}
+
 .cortix h4 {
      margin-bottom: -5px;
 }
 
-.job .job-about-co {     
-     text-align: left;
-     margin-top: 33px;
-     margin-bottom: 22px;
-}
-
-.job-about-co .map a {
-     text-decoration: none;
-     color: #9ea7b4;
-}
-
-.job-about-co .map {
-     display: inline-block;
-     margin-left: 29px;
-     padding-left: 20px;
-     background-image: url(/Image/map.png);
-     background-repeat: no-repeat;
-     background-position: 0px 2px;
-}
-
-.job-about-co .flash {
-     margin-left: 52px;
+.job-about .date-co {
+     margin-left: 44px;
      margin-right: -5px;
      padding-left: 32px;
-     background-image: url(/Image/flash.png);
-     background-repeat: no-repeat;
-     background-position: 0px 5px;
 }
 
 .btn-co {
@@ -365,33 +350,18 @@ p, li, span, a, .btn {
      margin-left: 95px;
 }
 
-.job .job-about-ad {     
-     text-align: left;
-     margin-top: 20px;
-     margin-bottom: 22px;
+.ademe h3 span {
+     padding-left: 7px;
 }
 
-.job-about-ad .map a {
-     text-decoration: none;
-     color: #9ea7b4;
+.ademe h4 {
+     margin-bottom: 24px;
 }
 
-.job-about-ad .map {
-     display: inline-block;
-     margin-left: 28px;
-     padding-left: 20px;
-     background-image: url(/Image/map.png);
-     background-repeat: no-repeat;
-     background-position: 0px 0px;
-}
-
-.job-about-ad .flash {
-     margin-left: 60px;
-     margin-right: 5px;
+.job-about .date-ad {
+     margin-left: 52px;
+     margin-right: 3px;
      padding-left: 22px;
-     background-image: url(/Image/flash.png);
-     background-repeat: no-repeat;
-     background-position: 0px 5px;
 }
 
 .btn-ade {
@@ -399,33 +369,23 @@ p, li, span, a, .btn {
      margin-left: 70px;
 }
 
-.job .job-about-it {     
-     text-align: left;
-     margin-top: -7px;
-     margin-bottom: 22px;
+.impect-toonga h3 {
+     padding-top: 1px;
 }
 
-.job-about-it .map a {
-     text-decoration: none;
-     color: #9ea7b4;
+.impect-toonga h3 span {
+     padding-left: 8px;
 }
 
-.job-about-it .map {
-     display: inline-block;
-     margin-left: 28px;
-     padding-left: 18px;
-     background-image: url(/Image/map.png);
-     background-repeat: no-repeat;
-     background-position: 0px 2px;
+.impect-toonga h4 {
+     padding-top: 1px;
+     margin-bottom: 23px;
 }
 
-.job-about-it .flash {
-     margin-left: 80px;
-     margin-right: -40px;
+.job-about .date-it {
+     margin-left: 72px;
+     margin-right: -41px;
      padding-left: 22px;
-     background-image: url(/Image/flash.png);
-     background-repeat: no-repeat;
-     background-position: 0px 5px;
 }
 
 .btn-it {
@@ -450,10 +410,6 @@ p, li, span, a, .btn {
      margin-bottom: 0px;
      padding-left: 24px;
      font-size: 22px;
-     font-weight: 500;
-}
-.education span {
-     font-size: 13px;
      font-weight: 500;
 }
 
@@ -484,12 +440,17 @@ p, li, span, a, .btn {
      font-weight: 500;
 }
 
-.education-yelp .map a {
+.education-about {
+     margin-top: 0px;
+     margin-bottom: 23px;
+}
+
+.education-about .map a {
      text-decoration: none;
      color: #9ea7b4;
 }
 
-.education-yelp .map {
+.education-about .map {
      display: inline-block;
      margin-left: 22px;
      padding-left: 18px;
@@ -498,13 +459,20 @@ p, li, span, a, .btn {
      background-position: 0px 0px;
 }
 
-.education-yelp .flash {
-     margin-left: 62px;
-     margin-right: 5px;
-     padding-left: 22px;
+.education-about .flash {
      background-image: url(/Image/flash.png);
      background-repeat: no-repeat;
      background-position: 0px 3px;
+}
+
+.yelp h4 {
+     margin-bottom: 29px;
+}
+
+.education-about .date-yelp {
+     margin-left: 62px;
+     margin-right: 5px;
+     padding-left: 22px;
 }
 
 .btn-yelp {
@@ -512,32 +480,14 @@ p, li, span, a, .btn {
      margin-left: 82px;
 }
 
-.education-qoqa {     
-     margin-top: 29px;
-     margin-bottom: 26px;
+.qoqa h4 {
+     margin-bottom: 30px;
 }
 
-.education-qoqa .map a {
-     text-decoration: none;
-     color: #9ea7b4;
-}
-
-.education-qoqa .map {
-     display: inline-block;
-     margin-left: 22px;
-     padding-left: 18px;
-     background-image: url(/Image/map.png);
-     background-repeat: no-repeat;
-     background-position: 0px 0px;
-}
-
-.education-qoqa .flash {
-     margin-left: 62px;
+.education-about .date-qoqa {
+     margin-left: 64px;
      margin-right: 5px;
      padding-left: 22px;
-     background-image: url(/Image/flash.png);
-     background-repeat: no-repeat;
-     background-position: 0px 3px;
 }
 
 .btn-qoqa {
@@ -546,59 +496,56 @@ p, li, span, a, .btn {
 }
 
 .dotted {
+     margin-top: 33px;
      background-color: #eaedf1;
      border-top: 2px dotted #c2cad4;
 }
 
-.education-cefire {
-     margin-top: -8px;
-     margin-bottom: 13px;
-}
-
 .cefire h4 {
      color: #04bca6;
+     margin-bottom: 5px;
 }
 
-.education-cefire .map {
-     padding-left: 24px;
+.education-about .date-ce {
+     margin-left: 66px;
+     margin-right: 0px;
+     padding-left: 22px;
 }
 
-.education-cefire .flash {
-     padding-left: 65px;
+.rating {
+     display: inline-block;
+     padding-left: 204px;
+}
+
+.rating > span {
+     font-size: 22px;
+}
+
+.cefire .education-about {
+     margin-bottom: 12px;
 }
 
 .ecole h4 {
      color: #04bca6;
+     margin-bottom: 4px;
 }
 
-.education-ecole {     
-     margin-top: -9px;
-     margin-bottom: 18px;
+.education-about .date-ec {
+     margin-left: 50px;
+     margin-right: 1px;
+     padding-left: 22px;
 }
 
-.education-ecole .map {
-     padding-left: 24px;
+.ecole .education-about {
+     margin-bottom: 13px;
 }
 
-.education-ecole .flash {
-     padding-left: 52px;
-}
-
-
-.rating {
-     display: inline-block;
-     padding-left: 210px;
-}
-
-.rating span {
-     font-size: 20px;
-}
 
 .hobby {
      background: white;
-     margin-top: 0px;
+     margin-top: 34px;
      border-radius: 5px;
-     height: 405px;
+     height: 402px;
 }
 
 .hobby-photo {
