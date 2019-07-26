@@ -330,8 +330,9 @@ p, li, span, a, .btn {
      color: #fff; 
      text-decoration: none; 
      text-align: center;
+     font-family: Signika, Signika Negative;
      font-weight: 300;
-     font-size: 16px;
+     font-size: 17px;
      margin-top: 1px;
      padding-top: 9px;
      border-radius: 3px; 
@@ -417,15 +418,11 @@ p, li, span, a, .btn {
      text-align: left;
 }
 
-.education span {
-     color: #6d8298;
-}
-
 .education h3 {
      margin-top: 29px;
      margin-bottom: 0px;
      padding-left: 24px;
-     font-size: 22px;
+     font-size: 23px;
      font-weight: 500;
 }
 
@@ -438,32 +435,33 @@ p, li, span, a, .btn {
 
 .education h4 {
      color: #00b9d8;
-     margin-top: 3px;
-     margin-bottom: 15px;
+     margin-top: 1px;
+     margin-bottom: 26px;
      padding-left: 22px;
      font-size: 18px;
      font-weight: 500;     
 }
 
-.education-yelp {     
-     margin-top: 29px;
-     margin-bottom: 24px;
-}
-
-.education span, .map {
+.education span {
      color: #6d8298;
-     font-size: 13px;
+     font-size: 12px;
      font-weight: 500;
 }
 
 .education-about {
      margin-top: 0px;
-     margin-bottom: 23px;
+     margin-bottom: 22px;
+     font-size: 12px;
+}
+
+.education-about span {
+     color: #33495f;
 }
 
 .education-about .map a {
      text-decoration: none;
-     color: #9ea7b4;
+     font-size: 13px;
+     padding-left: 3px;
 }
 
 .education-about .map {
@@ -481,34 +479,22 @@ p, li, span, a, .btn {
      background-position: 0px 3px;
 }
 
-.yelp h4 {
-     margin-bottom: 29px;
-}
-
 .education-about .date-yelp {
      margin-left: 62px;
-     margin-right: 5px;
+     margin-right: 90px;
      padding-left: 22px;
 }
 
-.btn-yelp {
+.btn-yelp, .btn-qoqa {
      background: #10cdc1;
-     margin-left: 82px;
-}
-
-.qoqa h4 {
-     margin-bottom: 30px;
+     font-size: 15px;
+     margin-top: 3px;
 }
 
 .education-about .date-qoqa {
      margin-left: 64px;
-     margin-right: 5px;
+     margin-right: 81px;
      padding-left: 22px;
-}
-
-.btn-qoqa {
-     background: #10cdc1;
-     margin-left: 74px;
 }
 
 .dotted {
@@ -517,24 +503,32 @@ p, li, span, a, .btn {
      border-top: 2px dotted #c2cad4;
 }
 
+.cefire h3 span {
+     padding-left: 9px;
+}
+
 .cefire h4 {
      color: #04bca6;
-     margin-bottom: 5px;
+     margin-top: 2px;
+     margin-bottom: 16px;
+}
+
+.cefire .education-about {
+     margin-bottom: 13px;
 }
 
 .education-about .date-ce {
      margin-left: 66px;
-     margin-right: 206px;
+     margin-right: 213px;
      padding-left: 22px;
 }
 
 .rating {
      display: inline-block;
+     vertical-align: bottom;
      font-size: 0;
      height: 17px;
      width: 17px;
-     margin-top: 10px;
-     margin-left: -1px;
      background-repeat: no-repeat;
      background-position: 0px 0px;
 }
@@ -546,39 +540,36 @@ p, li, span, a, .btn {
 
 .star-half {
      background-image: url(/Image/star_half.png);
-     /*background-repeat: no-repeat;
-     background-position: 0px 0px;*/
 }
 
-.star_empty {
+.star-empty {
      background-image: url(/Image/star_empty.png);
-     /*background-repeat: no-repeat;
-     background-position: 0px 0px;*/
 }
 
-.cefire .education-about {
-     margin-bottom: 12px;
+.ecole h3 span {
+     padding-left: 7px;
 }
 
 .ecole h4 {
      color: #04bca6;
-     margin-bottom: 4px;
+     margin-top: 2px;
+     margin-bottom: 14px;
 }
 
 .education-about .date-ec {
      margin-left: 50px;
-     margin-right: 1px;
+     margin-right: 213px;
      padding-left: 22px;
 }
 
 .ecole .education-about {
-     margin-bottom: 13px;
+     margin-bottom: 17px;
 }
 
 
 .hobby {
      background: white;
-     margin-top: 34px;
+     margin-top: 33px;
      border-radius: 5px;
      height: 402px;
 }
@@ -611,12 +602,27 @@ p, li, span, a, .btn {
      background-position: -515px 0px;
 }
 
+.label {
+     width: 25px;
+     height: 13px;
+     border-style: solid;
+     border-radius: 5px;
+     color: #34495e;
+}
+
+.triangle {
+     width: 0;
+     height: 0;
+     border-style: solid;
+     border-width: 6px 4px 0 4px;
+     border-color: #007bff transparent transparent transparent;
+}
+
 .sign {
      text-align: left;
 }
 
 .sign span {
-     color: #9ea7b4;
      font-size: 13px;
      text-transform: uppercase;
 }
@@ -743,6 +749,7 @@ p, li, span, a, .btn {
 .footer a {
      display: inline-block;
      text-decoration: none;
+     color: #596778;
      font-size: 19px;
      font-style: italic;
      vertical-align: top;
@@ -750,6 +757,7 @@ p, li, span, a, .btn {
 }
 
 .footer .commas {
+     color: #ced4dd;
      font-size: 106px;
      font-family: 'Times New Roman', Times, serif;
      display: inline-block;
