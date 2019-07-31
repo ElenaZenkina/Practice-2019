@@ -822,35 +822,35 @@ p, li, span, a, .btn {
    }
 
 .progress > .bar1 > .progress-bar {
-    width: 80%;
+    width: 215px;
     background-color: #10cdc1;
  }
  .progress > .bar2 > .progress-bar {
-     width: 55%;
+     width: 142px;
      background-color: #10cdc1;
  }
  .progress > .bar3 > .progress-bar {
-     width: 95%;
+     width: 250px;
      background-color: #10cdc1;
 }
 .progress > .bar4 > .progress-bar {
-     width: 85%;
+     width: 224px;
      background-color: #10cdc1;
 }
 .progress > .bar5 > .progress-bar {
-     width: 60%;
+     width: 189px;
      background-color: #16c4ec;
 }
 .progress > .bar6 > .progress-bar {
-     width: 75%;
+     width: 205px;
      background-color: #16c4ec;
 }
 .progress > .bar7 > .progress-bar {
-     width: 55%;
+     width: 155px;
      background-color: #16c4ec;
 }
 .progress > .bar8 > .progress-bar {
-     width: 60%;
+     width: 188px;
      background-color: #16c4ec;
 }
  
