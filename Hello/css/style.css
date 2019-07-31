@@ -275,18 +275,23 @@ p, li, span, a, .btn {
 
 .job ul {
      list-style: none;
+     margin-top: 18px;
+     margin-bottom: 40px;
+     padding-left: 0px;
+}
+
+.job ul li {
+     background: url(/Image/check.png) no-repeat 26px 13px;
      text-align: left;
-     padding-left: 30px;
-     line-height: 210%;
+     padding-left: 55px;
+     padding-top: 15px;
      font-size: 16px;
-     margin-bottom: 33px;
      letter-spacing: 0.009em;
 }
    
-.job ul li:before {
-     content: '✓';
-     padding-right: 14px;
-}
+/*.job ul li:first-child {
+     padding-top: 0px;
+}*/
 
 .job .job-about {     
      text-align: left;
@@ -315,6 +320,10 @@ p, li, span, a, .btn {
      background-image: url(/Image/flash.png);
      background-repeat: no-repeat;
      background-position: 0px 5px;
+}
+
+.secret-velvet h4 {
+     margin-bottom: 18px;
 }
 
 .job-about .date-sv {
@@ -348,7 +357,7 @@ p, li, span, a, .btn {
 }
 
 .cortix h4 {
-     margin-bottom: -5px;
+     margin-bottom: -19px;
 }
 
 .job-about .date-co {
@@ -566,7 +575,6 @@ p, li, span, a, .btn {
      margin-bottom: 17px;
 }
 
-
 .hobby {
      background: white;
      margin-top: 33px;
@@ -600,22 +608,6 @@ p, li, span, a, .btn {
 }
 .hobby-photo-6 {
      background-position: -515px 0px;
-}
-
-.label {
-     width: 25px;
-     height: 13px;
-     border-style: solid;
-     border-radius: 5px;
-     color: #34495e;
-}
-
-.triangle {
-     width: 0;
-     height: 0;
-     border-style: solid;
-     border-width: 6px 4px 0 4px;
-     border-color: #007bff transparent transparent transparent;
 }
 
 .sign {
@@ -661,21 +653,148 @@ p, li, span, a, .btn {
 }
 
 .cell p {
-     margin: 14px 3px 6px;
-     text-align: left;
+     display: inline-block;
 }
 
-.cell-right {
-     padding-left: 50px;
+.cell span {
+     display: inline-block;
+     position: relative;
+}
+
+.cloud {
+     width: 37px; 
+     height: 17px; 
+     background: #34495e;     
+     border-radius: 5px;
+     position: relative;
+     /*left: 100px;*/
+}
+
+.cloud::before {
+     content: "";
+     width: 0; 
+     height: 0;
+     position: absolute; 
+     top: 100%; 
+     left: 15px;
+     border-style: solid;
+     border-width: 4px 4px 0 4px;
+     border-color: #34495e transparent transparent transparent;
+}
+
+.cloud span {
+     color: white;
+     font-size: 10px;
+     display: inline-block;
+     position: relative;
+     top: -4px;
+     left: 9px;
+}
+
+.photoshop {
+     left: -74px;
+}
+.photoshop80 {
+     left: 42px;
+     top: -1px;
+}
+.progress1 {
+     top: -10px;
+}
+
+.referencement {
+     left: 19px;
+}
+.referencement60 {
+     left: 23px;
+     top: -1px;
+}
+.progress5 {
+     top: -10px;
+     left: 52px;
+}
+
+.illustrator {
+     left: -76px;
+     top: -11px;
+}
+.illustrator55 {
+     left: -29px;
+     top: -12px;
+}
+.progress2 {
+     top: -21px;
+     left: 0px;
+}
+
+.reseaux {
+     top: -11px;
+     left: -4px;
+}
+.reseaux75 {
+     top: -12px;
+     left: 63px;
+}
+.progress6 {
+     top: -21px;
+     left: 52px;
+}
+
+.wordpress {
+     top: -19px;
+     left: -72px;
+}
+.wordpress95 {
+     top: -20px;
+     left: 75px;
+}
+.progress3 {
+     top: -30px;
+     left: 0px;
+}
+
+.design {
+     top: -19px;
+     left: -27px;
+}
+.design55 {
+     top: -20px;
+     left: 37px;
+}
+.progress7 {
+     top: -30px;
+     left: 52px;
+}
+
+.prestashop {
+     top: -30px;
+     left: -72px;
+}
+.prestashop85 {
+     top: -31px;
+     left: 49px;
+}
+.progress4 {
+     top: -41px;
+     left: 1px;
+}
+
+.experience {
+     top: -30px;
+     left: -4px;
+}
+.experience60 {
+     top: -31px;
+     left: 47px;
+}
+.progress8 {
+     top: -41px;
+     left: 52px;
 }
    
-
-.hobby .progress {
-     margin: 0 auto;
+.progress {
+     position: relative;
      width: 268px;
-   }
-   
-   .progress {
      padding: 1px;
      background: rgba(0, 0, 0, 0.25);
      border-radius: 6px;
@@ -683,7 +802,7 @@ p, li, span, a, .btn {
      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
    }
    
-   .progress-bar {
+.progress-bar {
      height: 14px;
      border-radius: 4px;
         background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
