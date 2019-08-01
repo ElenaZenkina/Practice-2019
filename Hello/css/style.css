@@ -356,9 +356,20 @@ p, li, span, a, .btn {
      padding-left: 12px;
 }
 
-.cortix h4 {
-     margin-bottom: -19px;
+.cortix ul {
+     margin-top: -26px;
+     margin-bottom: 38px;
 }
+
+.cortix ul li:first-child {
+     background-position: 26px 19px;
+ }
+ .cortix ul li:nth-child(2) {
+     background-position: 26px 17px;
+ }
+ .cortix ul li:nth-child(3) {
+     background-position: 26px 15px;
+ }
 
 .job-about .date-co {
      margin-left: 46px;
