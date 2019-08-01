@@ -191,41 +191,76 @@ function updateEntities(dt) {
 
         // Offset the enemy if it collides with megaliths
         var dy = enemySpeed * dt;
-        if (collisionWithUnits([enemies[i].pos[0]-dy, enemies[i].pos[1]], enemies[i].sprite.size, megaliths)) {
+        if (collisionWithUnits([enemies[i].pos[0]-dy, enemies[i].pos[1]], enemies[i].sprite.size, megaliths) || enemies[i].back) {
             
+            if (enemies[i].back) {
+                a = enemies[i].pos[1];
+            }
+
             // Change ordinate
-            if(typeof enemies[i].bend == "undefined") {
-                enemies[i].bend = 'up';                
+            if(typeof enemies[i].direct == "undefined") {
+                // Detour megaliths nearer the centre
+                if ( (canvas.height / 2) < enemies[i].pos[1]) {
+                    enemies[i].direct = 'up';
+                }
+                else {
+                    enemies[i].direct = 'down';
+                }                                
             }
 
             // Arrive borders
-            if ( (enemies[i].bend == 'up') && (enemies[i].pos[1] - dy < 0) ) {
-                enemies[i].bend = 'down';
+            if ( (enemies[i].direct == 'up') && (enemies[i].pos[1] - dy < 0) ) {
+                enemies[i].direct = 'down';
+                enemies[i].dirChange = true;
             }
-            if ( (enemies[i].bend == 'down') && (enemies[i].pos[1] + dy > canvas.height) ) {
-                enemies[i].bend = 'up';
-            }
-
-            if ( (enemies[i].bend == 'up') && (collisionWithUnits([enemies[i].pos[0], enemies[i].pos[1]-dy], enemies[i].sprite.size, megaliths))) {
-                enemies[i].bend = 'down';
-            }
-            if ( (enemies[i].bend == 'down') && (collisionWithUnits([enemies[i].pos[0], enemies[i].pos[1]+dy], enemies[i].sprite.size, megaliths))) {
-                enemies[i].bend = 'up';
+            if ( (enemies[i].direct == 'down') && (enemies[i].pos[1] + dy > canvas.height) ) {
+                enemies[i].direct = 'up';
+                enemies[i].dirChange = true;
             }
 
-            if (enemies[i].bend == 'up') {
-                enemies[i].pos[1] -= enemySpeed * dt;
+            // Change direct of detour
+            if ( (enemies[i].direct == 'up') && (collisionWithUnits([enemies[i].pos[0], enemies[i].pos[1]-dy], enemies[i].sprite.size, megaliths))) {
+                if(typeof enemies[i].dirChange == "undefined") {
+                    enemies[i].direct = 'down';
+                    enemies[i].dirChange = true;
+                }
+                else {
+                    enemies[i].back = true;
+                }
             }
-            else {
+            if ( (enemies[i].direct == 'down') && (collisionWithUnits([enemies[i].pos[0], enemies[i].pos[1]+dy], enemies[i].sprite.size, megaliths))) {
+                if(typeof enemies[i].dirChange == "undefined") {
+                    enemies[i].direct = 'up';
+                    enemies[i].dirChange = true;
+                }
+                else {
+                    enemies[i].back = true;
+                }
+            }
+
+            if (!collisionWithUnits([enemies[i].pos[0], enemies[i].pos[1]+dy], enemies[i].sprite.size, megaliths)) {
+                delete enemies[i].back;
+            }
+
+            // Moving up / down
+            if ((enemies[i].direct == 'up') && (typeof enemies[i].back == "undefined") ) {
+                enemies[i].pos[1] -= enemySpeed * dt;                
+            }
+            if ((enemies[i].direct == 'down') && (typeof enemies[i].back == "undefined") ) {
                 enemies[i].pos[1] += enemySpeed * dt;
             }
+
+            // Moving back
+            if (enemies[i].back) {
+                enemies[i].pos[0] += enemySpeed * dt;
+            }            
         }
         else {
             enemies[i].pos[0] -= enemySpeed * dt;
-            delete enemies[i].bend;
+            delete enemies[i].direct;
+            delete enemies[i].dirChange;
         }
 
-        /*enemies[i].pos[0] -= enemySpeed * dt;*/
         enemies[i].sprite.update(dt);        
 
         // Remove if offscreen
