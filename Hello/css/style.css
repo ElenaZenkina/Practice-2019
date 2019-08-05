@@ -841,15 +841,18 @@ p, li, span, a, .btn {
      display: inline-block;
      text-decoration: none;
      color: #596778;
-     font-size: 19px;
-     font-style: italic;
+     font-size: 1.1em;
+     font-style: oblique;
      vertical-align: top;
-     padding: 26px 7px 0px 11px;
+     padding-top: 28px;
 }
 
 .footer .commas {
+     display: inline-block;
      color: #ced4dd;
      font-size: 106px;
      font-family: 'Times New Roman', Times, serif;
-     display: inline-block;
+     /*font-stretch: ultra-condensed;*/
+     padding-left: 16px;
+     padding-right: 10px;
 }
