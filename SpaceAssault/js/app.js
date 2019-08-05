@@ -463,7 +463,7 @@ function initMegaliths () {
 
         megaliths.push({
             pos: [x, y],
-            sprite: new Sprite('img/sprites.png', [0, 212], [58, 55], 4, [0, 1], 'vertical')
+            sprite: new Sprite('img/sprites.png', [0, 212], [58, 55], 4, [0], 'vertical')
         });
     }
 }
