@@ -461,9 +461,11 @@ function initMegaliths () {
         } while (boxCollides([x, y], [58, 55], player.pos, player.sprite.size) ||
                 (collisionWithUnits ([x, y], [58, 42], megaliths)) );
 
+        var choice = Math.floor(Math.random() * 2);     // return 0 or 1
         megaliths.push({
             pos: [x, y],
-            sprite: new Sprite('img/sprites.png', [0, 212], [58, 55], 4, [0], 'vertical')
+            // Random image for megalith            
+            sprite: new Sprite('img/sprites.png', [0, 212 + choice * 55], [58, 55], 4, [0])
         });
     }
 }
