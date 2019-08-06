@@ -226,12 +226,66 @@ p, li, span, a, .btn {
 .separator-content {
      background: inherit;
      float: left;
-     width: 79px;
-     height: 100%;     
-     background-image: url(/image/bar.png);
-     background-repeat: no-repeat;
-     background-position: 3px -15px;
-     
+     width: 25px;
+     height: 96%;     
+     border-left: 6px solid #dbe1e8;
+     margin-left: 39px; 
+}
+
+.round {
+     width: 19px; 
+     height: 19px;
+     background: #dbe1e8;
+     border-radius: 50%;
+     position: relative;
+     left: -13px;
+}
+
+.round1 {
+     top: 162px;
+     background: white;
+}
+.round2 {
+     top: 244px;
+}
+.round3 {
+     top: 428px;
+}
+.round4 {
+     top: 468px;
+     background: white;
+}
+.round5 {
+     top: 590px;
+}
+.round6 {
+     top: 709px;
+     background: white;
+}
+.round7 {
+     top: 772px;
+}
+.round8 {
+     top: 869px;
+     background: white;
+}
+.round9 {
+     top: 894px;
+}
+
+.sign2004 {
+     position: relative;
+     width: 71px;
+     height: 33px;
+     background: #dbe1e8;
+     border-radius: 5px;
+     top: 970px;
+     left: -38px;
+}
+
+.sign2004 span {
+     color: white;
+     font-size: 22px;
 }
 
 .right-content {
