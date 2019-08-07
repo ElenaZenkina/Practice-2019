@@ -1,6 +1,6 @@
 ﻿namespace Tanks
 {
-    partial class mainForm
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,22 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.components = new System.ComponentModel.Container();
+            this.pbxField = new System.Windows.Forms.PictureBox();
             this.btnNewGame = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.pbxField)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // pbxField
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(308, 274);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.pbxField.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pbxField.Location = new System.Drawing.Point(0, 0);
+            this.pbxField.Name = "pbxField";
+            this.pbxField.Size = new System.Drawing.Size(400, 400);
+            this.pbxField.TabIndex = 0;
+            this.pbxField.TabStop = false;
             // 
             // btnNewGame
             // 
-            this.btnNewGame.Location = new System.Drawing.Point(361, 12);
+            this.btnNewGame.Location = new System.Drawing.Point(508, 12);
             this.btnNewGame.Name = "btnNewGame";
             this.btnNewGame.Size = new System.Drawing.Size(75, 23);
             this.btnNewGame.TabIndex = 1;
@@ -51,25 +54,32 @@
             this.btnNewGame.UseVisualStyleBackColor = true;
             this.btnNewGame.Click += new System.EventHandler(this.btnNewGame_Click);
             // 
-            // mainForm
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(482, 382);
+            this.ClientSize = new System.Drawing.Size(615, 492);
             this.Controls.Add(this.btnNewGame);
-            this.Controls.Add(this.pictureBox1);
-            this.Name = "mainForm";
+            this.Controls.Add(this.pbxField);
+            this.IsMdiContainer = true;
+            this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Игра Танчики";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.Activated += new System.EventHandler(this.MainForm_Activated);
+            ((System.ComponentModel.ISupportInitialize)(this.pbxField)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pbxField;
         private System.Windows.Forms.Button btnNewGame;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

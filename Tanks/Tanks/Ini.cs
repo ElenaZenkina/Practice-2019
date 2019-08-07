@@ -10,15 +10,40 @@ namespace Tanks
 {
     public static class Ini
     {
-        public static int width = 500;
-        public static int height = 500;
-        public static int tanks = 5;
-        public static int apples = 5;
-        public static int speed = 10;
-
-        static Ini()
+        // Можно сделать проверку на диапазон допустимых значений для каждого параметра
+        private static int width = 500;
+        public static int Width
         {
+            get { return width; }
+            set { if (value > 0) { width = value; } }
+        }
 
+        private static int height = 500;
+        public static int Height
+        {
+            get { return height; }
+            set { if (value > 0) { height = value; } }
+        }
+
+        private static int tanks = 5;
+        public static int Tanks
+        {
+            get { return tanks; }
+            set { if (value > 0) { tanks = value; } }
+        }
+
+        private static int apples = 5;
+        public static int Apples
+        {
+            get { return apples; }
+            set { if (value > 0) { apples = value; } }
+        }
+
+        private static int speed = 10;
+        public static int Speed
+        {
+            get { return speed; }
+            set { if (value > 0) { speed = value; } }
         }
 
         public static void Init()
@@ -26,12 +51,11 @@ namespace Tanks
             string[] inis = ReadIniFile();
             if (inis != null)
             {
-                // Сделать проверку на диапазон допустимых значений
-                width = StringToInt(inis[0]);
-                height = StringToInt(inis[1]);
-                tanks = StringToInt(inis[2]);
-                apples = StringToInt(inis[3]);
-                speed = StringToInt(inis[4]);
+                Width = StringToInt(inis[0]);
+                Height = StringToInt(inis[1]);
+                Tanks = StringToInt(inis[2]);
+                Apples = StringToInt(inis[3]);
+                Speed = StringToInt(inis[4]);
             }
         }
 
