@@ -13,15 +13,16 @@ namespace Tanks
         private StatForm formStat;
 
         public Game game;
+        public KolobokView kolobokView;
 
         public PackmanController()
         {
-            game = new Game();
-
             formStat = new StatForm();
             //formStat.MdiParent = this;
             formStat.Show();
 
+            game = new Game();
+            kolobokView = new KolobokView(game.kolobok);
         }
 
 
@@ -32,7 +33,13 @@ namespace Tanks
 
         public void StartGame()
         {
-            game.Move();
+            SendMessage sm = formStat.AddData;
+            game.Move(sm);
+        }
+
+        public void TurnKolobok(EDirection direction)
+        {
+            game.kolobok.Turn(direction);
         }
 
     }

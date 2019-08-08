@@ -7,31 +7,28 @@ using System.Drawing;
 
 namespace Tanks
 {
-    class Kolobok
+    class Kolobok : Unit
     {
-        public Point location;
-        public EDirection direction;
-
-        public void Move(int offset)
+        public Kolobok()
         {
-            switch (direction)
+            Direction = EDirection.Left;
+        }
+
+        public void Turn(EDirection direction)
+        {
+            Direction = direction;
+        }
+
+        public void Move(/*SendMessage sm, */int offset)
+        {
+            if (IsMoving(offset))
             {
-                case EDirection.Left:
-                    location.X -= offset;
-                    break;
-                case EDirection.Right:
-                    location.X += offset;
-                    break;
-                case EDirection.Up:
-                    location.Y -= offset;
-                    break;
-                case EDirection.Down:
-                    location.Y += offset;
-                    break;
-                default:
-                    break;
+                //
             }
 
+            //sm("kolobok", Location.X, Location.Y);
+
         }
+
     }
 }

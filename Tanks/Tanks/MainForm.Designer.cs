@@ -43,6 +43,7 @@
             this.pbxField.Size = new System.Drawing.Size(400, 400);
             this.pbxField.TabIndex = 0;
             this.pbxField.TabStop = false;
+            this.pbxField.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.AllControls_PreviewKeyDown);
             // 
             // btnNewGame
             // 
@@ -53,6 +54,7 @@
             this.btnNewGame.Text = "New Game";
             this.btnNewGame.UseVisualStyleBackColor = true;
             this.btnNewGame.Click += new System.EventHandler(this.btnNewGame_Click);
+            this.btnNewGame.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.AllControls_PreviewKeyDown);
             // 
             // timer1
             // 
@@ -66,10 +68,12 @@
             this.Controls.Add(this.btnNewGame);
             this.Controls.Add(this.pbxField);
             this.IsMdiContainer = true;
+            this.KeyPreview = true;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Игра Танчики";
             this.Activated += new System.EventHandler(this.MainForm_Activated);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pbxField)).EndInit();
             this.ResumeLayout(false);
 

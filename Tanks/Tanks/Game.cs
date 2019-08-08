@@ -13,9 +13,6 @@ namespace Tanks
         private const int wallSize = 20;
         private const int tankSize = 20;
 
-        public int FieldWidth { get; private set; }
-        public int FieldHeight { get; private set; }
-
         public List<Point> walls { get; private set; }
         public List<Point> apples { get; private set; }
         public List<Tank> tanks;
@@ -26,19 +23,25 @@ namespace Tanks
         public Game()
         {
             Ini.Init();
-            FieldWidth = Ini.Width;
-            FieldHeight = Ini.Height;
-
             NewGame();
         }
 
-        public void Move()
+        public void Move(SendMessage sm)
         {
             for (int i = 0; i < tanks.Count; i++)
             {
-                tanks[i].Move(rnd);
-                //kolobok.Move();
+                //tanks[i].Move(rnd);
+                //sm("tank", tanks[i].Location.X, tanks[i].Location.Y);
             }
+
+            kolobok.Move(1);
+            UpdateStat();
+            sm("kolobok", kolobok.Location.X, kolobok.Location.Y);
+        }
+
+        private string[] UpdateStat()
+        {
+            return null;
         }
 
         private void NewGame()
@@ -57,10 +60,10 @@ namespace Tanks
             Point point = new Point();
             do
             {
-                point.X = rnd.Next(0, (FieldWidth / tankSize)) * tankSize;
-                point.Y = rnd.Next(0, (FieldHeight / tankSize)) * tankSize;
+                point.X = rnd.Next(0, (Ini.Width / tankSize)) * tankSize;
+                point.Y = rnd.Next(0, (Ini.Height / tankSize)) * tankSize;
             } while (!IsNotWall(point, wallSize) || !IsNotApple(point, appleSize) || !IsNotTank(point, tankSize));
-            kolobok.location = point;
+            kolobok.Location = point;
         }
 
         private void CreateTanks()
@@ -77,8 +80,8 @@ namespace Tanks
             Point point = new Point();
             do
             {
-                point.X = rnd.Next(0, (FieldWidth - tankSize));
-                point.Y = rnd.Next(0, (FieldHeight - tankSize));
+                point.X = rnd.Next(0, (Ini.Width - tankSize));
+                point.Y = rnd.Next(0, (Ini.Height - tankSize));
             } while (!IsNotWall(point, tankSize) || !IsNotApple(point, tankSize) || !IsNotTank(point, tankSize));
 
             return new Tank(point);
@@ -134,8 +137,8 @@ namespace Tanks
             Point point = new Point();
             do
             {
-                point.X = rnd.Next(0, (FieldWidth - appleSize));
-                point.Y = rnd.Next(0, (FieldHeight - appleSize));
+                point.X = rnd.Next(0, (Ini.Width - appleSize));
+                point.Y = rnd.Next(0, (Ini.Height - appleSize));
             } while (!IsNotWall(point, appleSize) || !IsNotApple(point, appleSize));
 
             return point;

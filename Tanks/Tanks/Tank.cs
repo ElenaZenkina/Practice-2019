@@ -12,7 +12,7 @@ namespace Tanks
         public Point Location;
         private EDirection direction;
 
-        public SendMessage MessageSender;
+        //public SendMessage MessageSender;
 
         public Tank(Point location)
         {
@@ -43,7 +43,7 @@ namespace Tanks
                     break;
             }
 
-            MessageSender("tank", Location.X, Location.Y);
+            //MessageSender("tank", Location.X, Location.Y);
         }
     }
 }
