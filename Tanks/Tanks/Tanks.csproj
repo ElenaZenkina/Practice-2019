@@ -66,6 +66,7 @@
       <DependentUpon>Stat.cs</DependentUpon>
     </Compile>
     <Compile Include="Tank.cs" />
+    <Compile Include="TankView.cs" />
     <Compile Include="Unit.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -107,6 +108,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\wall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\empty.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

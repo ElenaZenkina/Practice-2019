@@ -17,10 +17,17 @@ namespace Tanks
             InitializeComponent();
         }
 
-        public void AddData(string name, int x, int y)
+        public void AddData(List<string> stats)
         {
-            dgvStat.Rows.Add(name, x, y);
-            //dgvStat.Rows.Clear;
+            dgvStat.Rows.Clear();
+
+            for (int i = 0; i < stats.Count; i++)
+            {
+                var rows = stats[i].Split(',');
+                dgvStat.Rows.Add(rows[0], rows[1], rows[2]);
+            }
+            
+
         }
     }
 }

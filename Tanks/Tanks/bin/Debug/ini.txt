@@ -2,4 +2,4 @@ width=400
 height=400
 tanks=4
 apples=4
-speed=8
+speed=10

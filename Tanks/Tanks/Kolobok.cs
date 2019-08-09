@@ -19,15 +19,9 @@ namespace Tanks
             Direction = direction;
         }
 
-        public void Move(/*SendMessage sm, */int offset)
+        public void Move()
         {
-            if (IsMoving(offset))
-            {
-                //
-            }
-
-            //sm("kolobok", Location.X, Location.Y);
-
+            TryMove();
         }
 
     }

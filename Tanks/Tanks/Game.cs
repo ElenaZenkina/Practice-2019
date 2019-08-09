@@ -12,6 +12,10 @@ namespace Tanks
         private const int appleSize = 20;
         private const int wallSize = 20;
         private const int tankSize = 20;
+        private const int kolobokSize = 20;
+
+        private SendScore sendScore;
+        private SendGameOver sendGameOver;
 
         public List<Point> walls { get; private set; }
         public List<Point> apples { get; private set; }
@@ -20,28 +24,87 @@ namespace Tanks
 
         private Random rnd = new Random();
 
-        public Game()
+        public Game(SendScore sendScore, SendGameOver sendGameOver)
         {
+            this.sendScore = sendScore;
+            this.sendGameOver = sendGameOver;
             Ini.Init();
             NewGame();
         }
 
-        public void Move(SendMessage sm)
+        public void Move(SendStat sendStat)
+        {
+            MoveTanks();
+
+            MoveKolobok();
+
+            sendStat(UpdateStat());
+        }
+
+        private void MoveTanks()
         {
             for (int i = 0; i < tanks.Count; i++)
             {
-                //tanks[i].Move(rnd);
-                //sm("tank", tanks[i].Location.X, tanks[i].Location.Y);
-            }
+                tanks[i].Move(rnd);
+                if (IsNotWall(tanks[i].NextStep, tankSize))
+                {
+                    tanks[i].Location = tanks[i].NextStep;
+                }
 
-            kolobok.Move(1);
-            UpdateStat();
-            sm("kolobok", kolobok.Location.X, kolobok.Location.Y);
+                for (int j = 0; j < tanks.Count; j++)
+                {
+                    if (i == j) { continue; }
+                    if (IsCross(tanks[i].Location, tankSize, tanks[j].Location, tankSize))
+                    {
+                        tanks[i].Turn180();
+                        tanks[i].Move(rnd);
+                        tanks[j].Turn180();
+                    }
+                }
+            }
         }
 
-        private string[] UpdateStat()
+        private void MoveKolobok()
         {
-            return null;
+            kolobok.Move();
+            if (IsNotWall(kolobok.NextStep, kolobokSize))
+            {
+                kolobok.Location = kolobok.NextStep;
+            }
+
+            if (!IsNotTank(kolobok.Location, kolobokSize))
+            {
+                sendGameOver();
+            }
+
+            if (IsEatApple(kolobok.Location, kolobokSize, out Point appleEating))
+            {
+                apples.Add(CreateOneApple());
+                sendScore(appleEating, apples[Ini.Apples - 1]);
+            }
+        }
+
+        private List<string> UpdateStat()
+        {
+            var stats = new List<string>();
+            stats.Add("kolobok" + "," + kolobok.Location.X + "," + kolobok.Location.Y);
+
+            for (int i = 0; i < tanks.Count; i++)
+            {
+                stats.Add("tank" + "," + tanks[i].Location.X + "," + tanks[i].Location.Y);
+            }
+
+            for (int i = 0; i < apples.Count; i++)
+            {
+                stats.Add("apple" + "," + apples[i].X + "," + apples[i].Y);
+            }
+
+            for (int i = 0; i < walls.Count; i++)
+            {
+                stats.Add("wall" + "," + walls[i].X + "," + walls[i].Y);
+            }
+
+            return stats;
         }
 
         private void NewGame()
@@ -52,7 +115,7 @@ namespace Tanks
             CreateKolobok();
         }
 
-#region Новая игра
+        #region Новая игра
 
         private void CreateKolobok()
         {
@@ -182,6 +245,24 @@ namespace Tanks
             }
 
             return true;
+        }
+
+        private bool IsEatApple(Point point, int size, out Point appleEating)
+        {
+            appleEating = new Point();
+            if (apples == null) { return false; }
+
+            for (int i = 0; i < apples.Count; i++)
+            {
+                if (IsCross(point, size, apples[i], appleSize))
+                {
+                    appleEating = apples[i];
+                    apples.RemoveAt(i);
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private bool IsCross(Point point1, int size1, Point point2, int size2)

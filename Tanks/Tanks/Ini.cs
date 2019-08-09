@@ -51,6 +51,8 @@ namespace Tanks
         public static int wallSize = Properties.Resources.wall.Width;
         public static int appleSize = Properties.Resources.apple.Width;
 
+        public static int Step = 1;
+
         public static void Init()
         {
             string[] inis = ReadIniFile();

@@ -7,43 +7,59 @@ using System.Drawing;
 
 namespace Tanks
 {
-    public class Tank
+    class Tank: Unit
     {
-        public Point Location;
-        private EDirection direction;
-
-        //public SendMessage MessageSender;
-
+        public EDirection PreviousDirection { get; set; }
         public Tank(Point location)
         {
             this.Location = location;
-            direction = EDirection.Left;
+            Direction = EDirection.Left;
+        }
+
+        public void Turn(Random rnd)
+        {
+            PreviousDirection = Direction;
+            switch (rnd.Next(0, 4))
+            {
+                case 0:
+                    Direction = EDirection.Up;
+                    break;
+                case 1:
+                    Direction = EDirection.Right;
+                    break;
+                case 2:
+                    Direction = EDirection.Down;
+                    break;
+                default:
+                    Direction = EDirection.Left;
+                    break;
+            }
+        }
+
+        public void Turn180()
+        {
+            switch (Direction)
+            {
+                case EDirection.Up:
+                    Direction = EDirection.Down;
+                    break;
+                case EDirection.Right:
+                    Direction = EDirection.Left;
+                    break;
+                case EDirection.Down:
+                    Direction = EDirection.Up;
+                    break;
+                case EDirection.Left:
+                    Direction = EDirection.Right;
+                    break;
+            }
         }
 
         public void Move(Random rnd)
         {
-            int offset = 1;
-            switch (rnd.Next(0, 4))
-            {
-                case 0:
-                    direction = EDirection.Up;
-                    Location.X -= offset;
-                    break;
-                case 1:
-                    direction = EDirection.Right;
-                    Location.Y += offset;
-                    break;
-                case 2:
-                    direction = EDirection.Down;
-                    Location.X += offset;
-                    break;
-                default:
-                    direction = EDirection.Left;
-                    Location.Y -= offset;
-                    break;
-            }
-
-            //MessageSender("tank", Location.X, Location.Y);
+            TryMove();
+            Turn(rnd);
         }
+
     }
 }

@@ -13,48 +13,66 @@ namespace Tanks
     public partial class MainForm : Form
     {
         private PackmanController packman;
+        private int score = 0;
+
+        private readonly Size size = new Size(20, 20);
+        private readonly Rectangle profile = new Rectangle(0, 0, 20, 20);
 
         public MainForm()
         {
-            packman = new PackmanController();
-            packman.LoadIni();
-
+            packman = new PackmanController(this);
             InitializeComponent();
-
-            pbxField.Size = new Size(Ini.Width, Ini.Height);
-            timer1.Interval = 500;
         }
 
         private void btnNewGame_Click(object sender, EventArgs e)
         {
+            StartGame();
+        }
+
+        private void StartGame()
+        {
+            packman.LoadIni();
+            //pbxField.Invalidate(new Rectangle(0, 0, Ini.Width, Ini.Height));
+            pbxField.Size = new Size(Ini.Width, Ini.Height);
+
             Setting();
 
+            score = 0;
+            // Ini.Speed - количество пикселей в секунду
+            timer1.Interval = 1000 / Ini.Speed;
             timer1.Enabled = true;
             timer1.Start();
-            //MessageBox.Show("OK");
+            btnNewGame.Enabled = false;
+            lblStarted.Text = "Игра началась...";
         }
 
         private void Setting()
         {
-            Graphics field = pbxField.CreateGraphics();
-
-            for (int i = 0; i < packman.game.walls.Count; i++)
+            Rectangle scrImage;
+            using (Graphics field = pbxField.CreateGraphics())
             {
-                field.DrawImage(Properties.Resources.wall, packman.game.walls[i]);
+                for (int i = 0; i < packman.game.walls.Count; i++)
+                {
+                    scrImage = new Rectangle(packman.game.walls[i], size);
+                    field.DrawImage(Properties.Resources.wall, scrImage, profile, GraphicsUnit.Pixel);
+                }
+
+                for (int i = 0; i < packman.game.apples.Count; i++)
+                {
+                    scrImage = new Rectangle(packman.game.apples[i], size);
+                    field.DrawImage(Properties.Resources.apple, scrImage, profile, GraphicsUnit.Pixel);
+                }
+
+                for (int i = 0; i < packman.game.tanks.Count; i++)
+                {
+                    packman.tankView.Draw(packman.game.tanks[i], field);
+                }
+
+                packman.kolobokView.Draw(field);
+                //pbxField.Invalidate(new Rectangle(packman.kolobokView.kolobok.Location, new Size(20, 20)));
+                //field.DrawImage(Properties.Resources.kolobok, new Rectangle(packman.kolobokView.kolobok.Location, size), profile, GraphicsUnit.Pixel);
             }
 
-            for (int i = 0; i < packman.game.apples.Count; i++)
-            {
-                field.DrawImage(Properties.Resources.apple, packman.game.apples[i]);
-            }
-
-            for (int i = 0; i < packman.game.tanks.Count; i++)
-            {
-                field.DrawImage(Properties.Resources.tank, packman.game.tanks[i].Location);
-            }
-
-            field.DrawImage(packman.kolobokView.imageKolobok, packman.kolobokView.kolobok.Location.X,
-                packman.kolobokView.kolobok.Location.Y, new Rectangle(0, 0, 20, 20), GraphicsUnit.Pixel);
 
             /*Image img = Image.FromFile("fire.png");
             Graphics gr = pictureBox1.CreateGraphics();
@@ -63,48 +81,49 @@ namespace Tanks
             {
                 gr.DrawImage(img, 370, y, 70, 70);
             }
-            //Invalidate();
             pictureBox1.Invalidate();*/
-            
-
-
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             packman.StartGame();
-
-            Graphics field = pbxField.CreateGraphics();
-
-            pbxField.Invalidate(new Rectangle(packman.kolobokView.kolobok.Location, new Size(20, 20)));
-
-            field.DrawImage(packman.kolobokView.imageKolobok, packman.kolobokView.kolobok.Location.X,
-                packman.kolobokView.kolobok.Location.Y, new Rectangle(0, 0, 20, 20), GraphicsUnit.Inch);
-
-
-            //pbxField.Invalidate(new Rectangle())
-
-            /*Image img = Properties.Resources.kolobok;
-            Graphics gr = pbxField.CreateGraphics();
-            y--;
-            if (y % 2 == 0)
+            using (Graphics field = pbxField.CreateGraphics())
             {
-                gr.DrawImage(img, 200, y);
+                //pbxField.Invalidate(new Rectangle(packman.kolobokView.kolobok.PreviousStep, new Size(20, 20)));
+
+                /*field.DrawImage(Properties.Resources.kolobok, packman.kolobokView.kolobok.Location.X,
+                    packman.kolobokView.kolobok.Location.Y, new Rectangle(0, 0, 20, 20), GraphicsUnit.Inch);*/
+                //field.DrawImage(Properties.Resources.kolobok, new Rectangle(packman.kolobokView.kolobok.Location, size), profile, GraphicsUnit.Pixel);
+
+                packman.kolobokView.Draw(field);
+                for (int i = 0; i < packman.game.tanks.Count; i++)
+                {
+                    packman.tankView.Draw(packman.game.tanks[i], field);
+                }
             }
-            pbxField.Invalidate();*/
 
         }
 
-        private void UpdateStats()
+        public void UpdateScore(Point appleEating, Point appleNew)
         {
+            score++;
+            lblScore.Text = score.ToString();
 
+            using (Graphics field = pbxField.CreateGraphics())
+            {
+                pbxField.Invalidate(new Rectangle(appleEating, new Size(20, 20)));
+                field.DrawImage(Properties.Resources.apple, new Rectangle(appleNew, size), profile, GraphicsUnit.Pixel);
+            }
         }
 
-        private void MainForm_Activated(object sender, EventArgs e)
+        public void GameOver()
         {
-            //Setting();
-        }
+            timer1.Stop();
+            timer1.Enabled = false;
 
+            lblStarted.Text = "Игра закончена";
+            btnNewGame.Enabled = true;
+        }
 
         private void AllControls_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {

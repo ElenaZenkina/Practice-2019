@@ -46,7 +46,7 @@
             this.dgvStat.Location = new System.Drawing.Point(0, 0);
             this.dgvStat.Name = "dgvStat";
             this.dgvStat.ReadOnly = true;
-            this.dgvStat.Size = new System.Drawing.Size(402, 326);
+            this.dgvStat.Size = new System.Drawing.Size(358, 572);
             this.dgvStat.TabIndex = 0;
             // 
             // Name
@@ -67,11 +67,11 @@
             this.Y.Name = "Y";
             this.Y.ReadOnly = true;
             // 
-            // FormStat
+            // StatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(402, 326);
+            this.ClientSize = new System.Drawing.Size(358, 572);
             this.Controls.Add(this.dgvStat);
             this.Text = "Статистика";
             ((System.ComponentModel.ISupportInitialize)(this.dgvStat)).EndInit();

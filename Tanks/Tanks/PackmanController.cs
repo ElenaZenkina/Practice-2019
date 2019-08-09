@@ -1,28 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing;
 
 namespace Tanks
 {
-    public delegate void SendMessage(string name, int x, int y);
+    public delegate void SendStat(List<string> stats);
+    public delegate void SendGameOver();
+    public delegate void SendScore(Point appleEating, Point appleNew);
 
     class PackmanController
     {
+        private MainForm mainForm;
         private StatForm formStat;
+        private SendScore sendScore;
+        private SendGameOver sendGameOver;
 
         public Game game;
         public KolobokView kolobokView;
+        public TankView tankView;
 
-        public PackmanController()
+        public PackmanController(MainForm mainForm)
         {
+            this.mainForm = mainForm;
             formStat = new StatForm();
             //formStat.MdiParent = this;
             formStat.Show();
 
-            game = new Game();
+            sendGameOver = mainForm.GameOver;
+            sendScore = mainForm.UpdateScore;
+
+            game = new Game(sendScore, sendGameOver);
+
             kolobokView = new KolobokView(game.kolobok);
+            tankView = new TankView();
         }
 
 
@@ -33,8 +43,9 @@ namespace Tanks
 
         public void StartGame()
         {
-            SendMessage sm = formStat.AddData;
-            game.Move(sm);
+            SendStat sendStat = formStat.AddData;
+
+            game.Move(sendStat);
         }
 
         public void TurnKolobok(EDirection direction)
