@@ -12,8 +12,9 @@ namespace Tanks
         public EDirection PreviousDirection { get; set; }
         public Tank(Point location)
         {
-            this.Location = location;
+            Location = location;
             Direction = EDirection.Left;
+            Size = Ini.tankSize;
         }
 
         public void Turn(Random rnd)

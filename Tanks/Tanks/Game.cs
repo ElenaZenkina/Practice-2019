@@ -13,6 +13,7 @@ namespace Tanks
         private const int wallSize = 20;
         private const int tankSize = 20;
         private const int kolobokSize = 20;
+        private const int bulletSize = 5;
 
         private SendScore sendScore;
         private SendGameOver sendGameOver;
@@ -20,6 +21,7 @@ namespace Tanks
         public List<Point> walls { get; private set; }
         public List<Point> apples { get; private set; }
         public List<Tank> tanks;
+        public List<Bullet> bullets;
         public Kolobok kolobok;
 
         private Random rnd = new Random();
@@ -35,10 +37,48 @@ namespace Tanks
         public void Move(SendStat sendStat)
         {
             MoveTanks();
-
             MoveKolobok();
+            MoveBullets();
 
             sendStat(UpdateStat());
+        }
+
+        private void MoveBullets()
+        {
+            if (bullets == null) { return; }
+
+            for (int i = 0; i < bullets.Count; i++)
+            {
+                bullets[i].Move();
+                bullets[i].Location = bullets[i].NextStep;
+
+                if (bullets[i].FromTank && !IsNotKolobok(bullets[i].NextStep, bulletSize))
+                {
+                    sendGameOver();
+                }
+
+                if (IsOutBullet(bullets[i].NextStep, bulletSize) || !IsNotWall(bullets[i].NextStep, bulletSize))
+                {
+                    bullets.RemoveAt(i);
+                    i--;
+                    continue;
+                }
+
+                if (!bullets[i].FromTank && tanks != null)
+                {
+                    for (int j = 0; j < tanks.Count; j++)
+                    {
+                        if (IsCross(bullets[i].NextStep, bulletSize, tanks[j].Location, tankSize))
+                        {
+                            bullets.RemoveAt(i);
+                            tanks.RemoveAt(j);
+                            i--;
+                            break;
+                        }
+                    }
+                }
+
+            }
         }
 
         private void MoveTanks()
@@ -46,6 +86,7 @@ namespace Tanks
             for (int i = 0; i < tanks.Count; i++)
             {
                 tanks[i].Move(rnd);
+
                 if (IsNotWall(tanks[i].NextStep, tankSize))
                 {
                     tanks[i].Location = tanks[i].NextStep;
@@ -84,6 +125,17 @@ namespace Tanks
             }
         }
 
+        public void FireKolobok()
+        {
+            bullets.Add(new Bullet(kolobok.Location, kolobok.Direction, bulletSize, false));
+        }
+
+        private void FireTank(Tank tank)
+        {
+            bullets.Add(new Bullet(tank.Location, tank.Direction, bulletSize, true));
+        }
+
+
         private List<string> UpdateStat()
         {
             var stats = new List<string>();
@@ -92,6 +144,11 @@ namespace Tanks
             for (int i = 0; i < tanks.Count; i++)
             {
                 stats.Add("tank" + "," + tanks[i].Location.X + "," + tanks[i].Location.Y);
+            }
+
+            for (int i = 0; i < bullets.Count; i++)
+            {
+                stats.Add("bullet" + "," + bullets[i].Location.X + "," + bullets[i].Location.Y);
             }
 
             for (int i = 0; i < apples.Count; i++)
@@ -107,15 +164,16 @@ namespace Tanks
             return stats;
         }
 
+        #region Новая игра
+
         private void NewGame()
         {
             CreateMaze();
             CreateApples();
             CreateTanks();
             CreateKolobok();
+            bullets = new List<Bullet>();
         }
-
-        #region Новая игра
 
         private void CreateKolobok()
         {
@@ -202,7 +260,7 @@ namespace Tanks
             {
                 point.X = rnd.Next(0, (Ini.Width - appleSize));
                 point.Y = rnd.Next(0, (Ini.Height - appleSize));
-            } while (!IsNotWall(point, appleSize) || !IsNotApple(point, appleSize));
+            } while (!IsNotWall(point, appleSize) || !IsNotApple(point, appleSize) || !IsNotKolobok(point, appleSize));
 
             return point;
         }
@@ -247,6 +305,14 @@ namespace Tanks
             return true;
         }
 
+
+        private bool IsNotKolobok(Point point, int size)
+        {
+            if (kolobok == null) { return true; }
+
+            return (!IsCross(point, size, kolobok.Location, kolobokSize));
+        }
+
         private bool IsEatApple(Point point, int size, out Point appleEating)
         {
             appleEating = new Point();
@@ -261,7 +327,6 @@ namespace Tanks
                     return true;
                 }
             }
-
             return false;
         }
 
@@ -271,6 +336,11 @@ namespace Tanks
                      point1.Y + size1 <= point2.Y || point1.Y >= point2.Y + size2);
         }
 
-#endregion
+        private bool IsOutBullet(Point point, int size)
+        {
+            return (point.X == 0 || point.Y == 0 || point.X + size >= Ini.Width || point.Y + size >= Ini.Height);
+        }
+
+        #endregion
     }
 }

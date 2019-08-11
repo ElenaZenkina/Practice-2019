@@ -12,6 +12,8 @@ namespace Tanks
     {
         private MainForm mainForm;
         private StatForm formStat;
+
+        private SendStat sendStat;
         private SendScore sendScore;
         private SendGameOver sendGameOver;
 
@@ -28,6 +30,7 @@ namespace Tanks
 
             sendGameOver = mainForm.GameOver;
             sendScore = mainForm.UpdateScore;
+            sendStat = formStat.AddData;
 
             game = new Game(sendScore, sendGameOver);
 
@@ -43,14 +46,17 @@ namespace Tanks
 
         public void StartGame()
         {
-            SendStat sendStat = formStat.AddData;
-
             game.Move(sendStat);
         }
 
         public void TurnKolobok(EDirection direction)
         {
             game.kolobok.Turn(direction);
+        }
+
+        public void FireKolobok()
+        {
+            game.FireKolobok();
         }
 
     }

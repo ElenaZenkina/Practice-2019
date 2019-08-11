@@ -9,6 +9,7 @@ namespace Tanks
         public Point NextStep { get; private set; }
         public Point PreviousStep { get; private set; }
         public EDirection Direction { get; protected set; }
+        public int Size { get; protected set; }
 
         public void TryMove()
         {
@@ -21,13 +22,13 @@ namespace Tanks
                     point.X -= (Location.X == 0 ? 0 : Ini.Step);
                     break;
                 case EDirection.Right:
-                    point.X += (Location.X + Ini.kolobokSize == Ini.Width ? 0 : Ini.Step);
+                    point.X += (Location.X + Size == Ini.Width ? 0 : Ini.Step);
                     break;
                 case EDirection.Up:
                     point.Y -= (Location.Y == 0 ? 0 : Ini.Step);
                     break;
                 case EDirection.Down:
-                    point.Y += (Location.Y + Ini.kolobokSize == Ini.Height ? 0 : Ini.Step);
+                    point.Y += (Location.Y + Size == Ini.Height ? 0 : Ini.Step);
                     break;
                 default:
                     break;

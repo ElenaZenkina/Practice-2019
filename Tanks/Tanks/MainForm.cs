@@ -14,6 +14,7 @@ namespace Tanks
     {
         private PackmanController packman;
         private int score = 0;
+        private bool onDraw = false;
 
         private readonly Size size = new Size(20, 20);
         private readonly Rectangle profile = new Rectangle(0, 0, 20, 20);
@@ -87,18 +88,30 @@ namespace Tanks
         private void timer1_Tick(object sender, EventArgs e)
         {
             packman.StartGame();
+            Point pointPrevious = packman.kolobokView.kolobok.PreviousStep;
+            Point pointCurrent = packman.kolobokView.kolobok.Location;
+
             using (Graphics field = pbxField.CreateGraphics())
             {
-                //pbxField.Invalidate(new Rectangle(packman.kolobokView.kolobok.PreviousStep, new Size(20, 20)));
+                //pbxField.Invalidate(new Rectangle(pointPrevious, new Size(20, 20)));
+                /*if (onDraw)
+                {
+                    field.DrawImage(Properties.Resources.kolobok, new Rectangle(pointCurrent, size), profile, GraphicsUnit.Pixel);
+                }
+                else
+                {
+                    pbxField.Invalidate(new Rectangle(pointPrevious, new Size(20, 20)));
+                }
 
-                /*field.DrawImage(Properties.Resources.kolobok, packman.kolobokView.kolobok.Location.X,
-                    packman.kolobokView.kolobok.Location.Y, new Rectangle(0, 0, 20, 20), GraphicsUnit.Inch);*/
-                //field.DrawImage(Properties.Resources.kolobok, new Rectangle(packman.kolobokView.kolobok.Location, size), profile, GraphicsUnit.Pixel);
-
+                onDraw = !onDraw;*/
                 packman.kolobokView.Draw(field);
                 for (int i = 0; i < packman.game.tanks.Count; i++)
                 {
                     packman.tankView.Draw(packman.game.tanks[i], field);
+                }
+                for (int i = 0; i < packman.game.bullets.Count; i++)
+                {
+                    field.DrawImage(Properties.Resources.bullet, new Rectangle(packman.game.bullets[i].Location, new Size(5, 5)), new Rectangle(0, 0, 5, 5), GraphicsUnit.Pixel);
                 }
             }
 
@@ -153,6 +166,9 @@ namespace Tanks
                     break;
                 case Keys.Right:
                     packman.TurnKolobok(EDirection.Right);
+                    break;
+                case Keys.Space:
+                    packman.FireKolobok();
                     break;
             }
         }

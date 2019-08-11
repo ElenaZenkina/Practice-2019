@@ -12,6 +12,7 @@ namespace Tanks
         public Kolobok()
         {
             Direction = EDirection.Left;
+            Size = Ini.kolobokSize;
         }
 
         public void Turn(EDirection direction)

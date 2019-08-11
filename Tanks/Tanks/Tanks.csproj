@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bullet.cs" />
     <Compile Include="EDirection.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Kolobok.cs" />
@@ -111,6 +112,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\empty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bullet.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
