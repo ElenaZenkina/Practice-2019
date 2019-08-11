@@ -85,6 +85,8 @@ namespace Tanks
         {
             for (int i = 0; i < tanks.Count; i++)
             {
+                FireTank(tanks[i]);
+
                 tanks[i].Move(rnd);
 
                 if (IsNotWall(tanks[i].NextStep, tankSize))
@@ -132,7 +134,10 @@ namespace Tanks
 
         private void FireTank(Tank tank)
         {
-            bullets.Add(new Bullet(tank.Location, tank.Direction, bulletSize, true));
+            if (rnd.Next(0, 100) == 1)
+            {
+                bullets.Add(new Bullet(tank.Location, tank.Direction, bulletSize, true));
+            }
         }
 
 
