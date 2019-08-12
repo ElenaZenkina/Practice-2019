@@ -6,7 +6,7 @@ namespace Tanks
 {
     public delegate void SendStat(List<string> stats);
     public delegate void SendGameOver();
-    public delegate void SendScore(Point appleEating, Point appleNew);
+    public delegate void SendScore();
 
     class PackmanController
     {
@@ -39,12 +39,7 @@ namespace Tanks
         }
 
 
-        public void LoadIni()
-        {
-            Ini.Init();
-        }
-
-        public void StartGame()
+        public void Move()
         {
             game.Move(sendStat);
         }

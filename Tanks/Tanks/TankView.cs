@@ -6,14 +6,12 @@ namespace Tanks
     class TankView
     {
         public Image imageTank = Properties.Resources.tank;
-        //public Tank tank;
 
-        private readonly Size size = new Size(20, 20);
-        private readonly Rectangle profile = new Rectangle(0, 0, 20, 20);
+        private readonly Size size = new Size(Properties.Resources.tank.Width, Properties.Resources.tank.Height);
+        private readonly Rectangle profile = new Rectangle(0, 0, Properties.Resources.tank.Width, Properties.Resources.tank.Height);
 
         public TankView()
         {
-
         }
 
         public void Draw(Tank tank, Graphics field)

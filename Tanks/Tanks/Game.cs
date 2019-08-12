@@ -123,20 +123,20 @@ namespace Tanks
             if (IsEatApple(kolobok.Location, kolobokSize, out Point appleEating))
             {
                 apples.Add(CreateOneApple());
-                sendScore(appleEating, apples[Ini.Apples - 1]);
+                sendScore();
             }
         }
 
         public void FireKolobok()
         {
-            bullets.Add(new Bullet(kolobok.Location, kolobok.Direction, bulletSize, false));
+            bullets.Add(new Bullet(kolobok.Location, kolobok.Direction, kolobokSize, false));
         }
 
         private void FireTank(Tank tank)
         {
             if (rnd.Next(0, 100) == 1)
             {
-                bullets.Add(new Bullet(tank.Location, tank.Direction, bulletSize, true));
+                bullets.Add(new Bullet(tank.Location, tank.Direction, tankSize, true));
             }
         }
 
@@ -343,7 +343,7 @@ namespace Tanks
 
         private bool IsOutBullet(Point point, int size)
         {
-            return (point.X == 0 || point.Y == 0 || point.X + size >= Ini.Width || point.Y + size >= Ini.Height);
+            return (point.X <= 0 || point.Y <= 0 || point.X + size >= Ini.Width || point.Y + size >= Ini.Height);
         }
 
         #endregion
