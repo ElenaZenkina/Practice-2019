@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tanks
+namespace Common
 {
     public static class Ini
     {
@@ -45,13 +45,6 @@ namespace Tanks
             get { return speed; }
             set { if (value > 0) { speed = value; } }
         }
-
-        public static int kolobokSize = Properties.Resources.kolobok.Width;
-        public static int tankSize = Properties.Resources.tank.Width;
-        public static int wallSize = Properties.Resources.wall.Width;
-        public static int appleSize = Properties.Resources.apple.Width;
-
-        public static int Step = 1;
 
         public static void Init()
         {

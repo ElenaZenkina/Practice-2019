@@ -1,5 +1,5 @@
 width=400
 height=400
-tanks=4
-apples=4
+tanks=5
+apples=5
 speed=10

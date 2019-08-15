@@ -4,17 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using Common;
 
-namespace Tanks
+namespace Model
 {
-    class Tank: Unit
+    public class Tank: Unit
     {
-        public EDirection PreviousDirection { get; set; }
+        public EDirection PreviousDirection { get; private set; }
+
+        private int tankSpeed = 1;
+
         public Tank(Point location)
         {
             Location = location;
             Direction = EDirection.Left;
-            Size = Ini.tankSize;
+            Size = IniGraphic.tankSize;
         }
 
         public void Turn(Random rnd)
@@ -58,7 +62,7 @@ namespace Tanks
 
         public void Move(Random rnd)
         {
-            TryMove();
+            TryMove(tankSpeed);
             Turn(rnd);
         }
 

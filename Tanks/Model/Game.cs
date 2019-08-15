@@ -4,43 +4,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using Common;
 
-namespace Tanks
+namespace Model
 {
-    class Game
+    public class Game
     {
-        private const int appleSize = 20;
-        private const int wallSize = 20;
-        private const int tankSize = 20;
-        private const int kolobokSize = 20;
-        private const int bulletSize = 5;
+        public event EventGameOver OnGameOver;
+        public event EventAddScore OnAddScore;
+        public event EventUpdateView OnUpdateView;
 
-        private SendScore sendScore;
-        private SendGameOver sendGameOver;
-
-        public List<Point> walls { get; private set; }
-        public List<Point> apples { get; private set; }
-        public List<Tank> tanks;
-        public List<Bullet> bullets;
-        public Kolobok kolobok;
+        private List<Point> walls;
+        private List<Point> apples;
+        private List<Tank> tanks;
+        private List<Bullet> bullets;
+        private Kolobok kolobok;
 
         private Random rnd = new Random();
 
-        public Game(SendScore sendScore, SendGameOver sendGameOver)
+        public Game()
         {
-            this.sendScore = sendScore;
-            this.sendGameOver = sendGameOver;
-            Ini.Init();
-            NewGame();
         }
 
-        public void Move(SendStat sendStat)
+        public void Move()
         {
             MoveTanks();
             MoveKolobok();
             MoveBullets();
 
-            sendStat(UpdateStat());
+            OnUpdateView?.Invoke(UpdateStat());
         }
 
         private void MoveBullets()
@@ -52,12 +44,12 @@ namespace Tanks
                 bullets[i].Move();
                 bullets[i].Location = bullets[i].NextStep;
 
-                if (bullets[i].FromTank && !IsNotKolobok(bullets[i].NextStep, bulletSize))
+                if (bullets[i].FromTank && !IsNotKolobok(bullets[i].NextStep, IniGraphic.bulletSize))
                 {
-                    sendGameOver();
+                    OnGameOver?.Invoke();
                 }
 
-                if (IsOutBullet(bullets[i].NextStep, bulletSize) || !IsNotWall(bullets[i].NextStep, bulletSize))
+                if (IsOutBullet(bullets[i].NextStep, IniGraphic.bulletSize) || !IsNotWall(bullets[i].NextStep, IniGraphic.bulletSize))
                 {
                     bullets.RemoveAt(i);
                     i--;
@@ -68,7 +60,7 @@ namespace Tanks
                 {
                     for (int j = 0; j < tanks.Count; j++)
                     {
-                        if (IsCross(bullets[i].NextStep, bulletSize, tanks[j].Location, tankSize))
+                        if (IsCross(bullets[i].NextStep, IniGraphic.bulletSize, tanks[j].Location, IniGraphic.tankSize))
                         {
                             bullets.RemoveAt(i);
                             tanks.RemoveAt(j);
@@ -89,7 +81,7 @@ namespace Tanks
 
                 tanks[i].Move(rnd);
 
-                if (IsNotWall(tanks[i].NextStep, tankSize))
+                if (IsNotWall(tanks[i].NextStep, IniGraphic.tankSize))
                 {
                     tanks[i].Location = tanks[i].NextStep;
                 }
@@ -97,7 +89,7 @@ namespace Tanks
                 for (int j = 0; j < tanks.Count; j++)
                 {
                     if (i == j) { continue; }
-                    if (IsCross(tanks[i].Location, tankSize, tanks[j].Location, tankSize))
+                    if (IsCross(tanks[i].Location, IniGraphic.tankSize, tanks[j].Location, IniGraphic.tankSize))
                     {
                         tanks[i].Turn180();
                         tanks[i].Move(rnd);
@@ -110,33 +102,38 @@ namespace Tanks
         private void MoveKolobok()
         {
             kolobok.Move();
-            if (IsNotWall(kolobok.NextStep, kolobokSize))
+            if (IsNotWall(kolobok.NextStep, IniGraphic.kolobokSize))
             {
                 kolobok.Location = kolobok.NextStep;
             }
 
-            if (!IsNotTank(kolobok.Location, kolobokSize))
+            if (!IsNotTank(kolobok.Location, IniGraphic.kolobokSize))
             {
-                sendGameOver();
+                OnGameOver?.Invoke();
             }
 
-            if (IsEatApple(kolobok.Location, kolobokSize, out Point appleEating))
+            if (IsEatApple(kolobok.Location, IniGraphic.kolobokSize, out Point appleEating))
             {
                 apples.Add(CreateOneApple());
-                sendScore();
+                OnAddScore?.Invoke();
             }
+        }
+
+        public void TurnKolobok(EDirection direction)
+        {
+            kolobok.Turn(direction);
         }
 
         public void FireKolobok()
         {
-            bullets.Add(new Bullet(kolobok.Location, kolobok.Direction, kolobokSize, false));
+            bullets.Add(new Bullet(kolobok.Location, kolobok.Direction, IniGraphic.kolobokSize, false));
         }
 
         private void FireTank(Tank tank)
         {
             if (rnd.Next(0, 100) == 1)
             {
-                bullets.Add(new Bullet(tank.Location, tank.Direction, tankSize, true));
+                bullets.Add(new Bullet(tank.Location, tank.Direction, IniGraphic.tankSize, true));
             }
         }
 
@@ -171,7 +168,7 @@ namespace Tanks
 
         #region Новая игра
 
-        private void NewGame()
+        public void NewGame()
         {
             CreateMaze();
             CreateApples();
@@ -186,9 +183,9 @@ namespace Tanks
             Point point = new Point();
             do
             {
-                point.X = rnd.Next(0, (Ini.Width / tankSize)) * tankSize;
-                point.Y = rnd.Next(0, (Ini.Height / tankSize)) * tankSize;
-            } while (!IsNotWall(point, wallSize) || !IsNotApple(point, appleSize) || !IsNotTank(point, tankSize));
+                point.X = rnd.Next(0, (Ini.Width / IniGraphic.tankSize)) * IniGraphic.tankSize;
+                point.Y = rnd.Next(0, (Ini.Height / IniGraphic.tankSize)) * IniGraphic.tankSize;
+            } while (!IsNotWall(point, IniGraphic.wallSize) || !IsNotApple(point, IniGraphic.appleSize) || !IsNotTank(point, IniGraphic.tankSize));
             kolobok.Location = point;
         }
 
@@ -206,47 +203,16 @@ namespace Tanks
             Point point = new Point();
             do
             {
-                point.X = rnd.Next(0, (Ini.Width - tankSize));
-                point.Y = rnd.Next(0, (Ini.Height - tankSize));
-            } while (!IsNotWall(point, tankSize) || !IsNotApple(point, tankSize) || !IsNotTank(point, tankSize));
+                point.X = rnd.Next(0, (Ini.Width - IniGraphic.tankSize));
+                point.Y = rnd.Next(0, (Ini.Height - IniGraphic.tankSize));
+            } while (!IsNotWall(point, IniGraphic.tankSize) || !IsNotApple(point, IniGraphic.tankSize) || !IsNotTank(point, IniGraphic.tankSize));
 
             return new Tank(point);
         }
 
         private void CreateMaze()
         {
-            walls = new List<Point>();
-            walls.Add(new Point(60, 40));
-            walls.Add(new Point(80, 40));
-            walls.Add(new Point(100, 40));
-            walls.Add(new Point(120, 40));
-            walls.Add(new Point(140, 40));
-            walls.Add(new Point(160, 40));
-            walls.Add(new Point(180, 40));
-            walls.Add(new Point(200, 40));
-            walls.Add(new Point(220, 40));
-            walls.Add(new Point(240, 40));
-            walls.Add(new Point(260, 40));
-            walls.Add(new Point(280, 40));
-            walls.Add(new Point(300, 40));
-
-            walls.Add(new Point(100, 100));
-            walls.Add(new Point(100, 120));
-            walls.Add(new Point(100, 140));
-            walls.Add(new Point(100, 160));
-            walls.Add(new Point(100, 180));
-            walls.Add(new Point(100, 200));
-            walls.Add(new Point(100, 220));
-            walls.Add(new Point(100, 240));
-
-            walls.Add(new Point(300, 100));
-            walls.Add(new Point(300, 120));
-            walls.Add(new Point(300, 140));
-            walls.Add(new Point(300, 160));
-            walls.Add(new Point(300, 180));
-            walls.Add(new Point(300, 200));
-            walls.Add(new Point(300, 220));
-            walls.Add(new Point(300, 240));
+            walls = IniGraphic.Maze;
         }
 
         private void CreateApples()
@@ -263,9 +229,9 @@ namespace Tanks
             Point point = new Point();
             do
             {
-                point.X = rnd.Next(0, (Ini.Width - appleSize));
-                point.Y = rnd.Next(0, (Ini.Height - appleSize));
-            } while (!IsNotWall(point, appleSize) || !IsNotApple(point, appleSize) || !IsNotKolobok(point, appleSize));
+                point.X = rnd.Next(0, (Ini.Width - IniGraphic.appleSize));
+                point.Y = rnd.Next(0, (Ini.Height - IniGraphic.appleSize));
+            } while (!IsNotWall(point, IniGraphic.appleSize) || !IsNotApple(point, IniGraphic.appleSize) || !IsNotKolobok(point, IniGraphic.appleSize));
 
             return point;
         }
@@ -280,7 +246,7 @@ namespace Tanks
 
             for (int i = 0; i < tanks.Count; i++)
             {
-                if (IsCross(point, size, tanks[i].Location, tankSize)) { return false; }
+                if (IsCross(point, size, tanks[i].Location, IniGraphic.tankSize)) { return false; }
             }
 
             return true;
@@ -292,7 +258,7 @@ namespace Tanks
 
             for (int i = 0; i < walls.Count; i++)
             {
-                if (IsCross(point, size, walls[i], wallSize)) { return false; }
+                if (IsCross(point, size, walls[i], IniGraphic.wallSize)) { return false; }
             }
 
             return true;
@@ -304,7 +270,7 @@ namespace Tanks
 
             for (int i = 0; i < apples.Count; i++)
             {
-                if (IsCross(point, size, apples[i], appleSize)) { return false; }
+                if (IsCross(point, size, apples[i], IniGraphic.appleSize)) { return false; }
             }
 
             return true;
@@ -315,7 +281,7 @@ namespace Tanks
         {
             if (kolobok == null) { return true; }
 
-            return (!IsCross(point, size, kolobok.Location, kolobokSize));
+            return (!IsCross(point, size, kolobok.Location, IniGraphic.kolobokSize));
         }
 
         private bool IsEatApple(Point point, int size, out Point appleEating)
@@ -325,7 +291,7 @@ namespace Tanks
 
             for (int i = 0; i < apples.Count; i++)
             {
-                if (IsCross(point, size, apples[i], appleSize))
+                if (IsCross(point, size, apples[i], IniGraphic.appleSize))
                 {
                     appleEating = apples[i];
                     apples.RemoveAt(i);

@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace Tanks
 {
-    class TankView
+    public class TankView
     {
         public Image imageTank = Properties.Resources.tank;
 
@@ -14,10 +14,9 @@ namespace Tanks
         {
         }
 
-        public void Draw(Tank tank, Graphics field)
+        public void Draw(Point location, Graphics field)
         {
-            Rectangle scrImage = new Rectangle(tank.Location, size);
-            field.DrawImage(imageTank, scrImage, profile, GraphicsUnit.Pixel);
+            field.DrawImage(imageTank, new Rectangle(location, size), profile, GraphicsUnit.Pixel);
         }
     }
 }

@@ -4,15 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using Common;
 
-namespace Tanks
+namespace Model
 {
-    class Kolobok : Unit
+    public class Kolobok : Unit
     {
+        private int kolobokSpeed = 1;
+
         public Kolobok()
         {
             Direction = EDirection.Left;
-            Size = Ini.kolobokSize;
+            Size = IniGraphic.kolobokSize;
         }
 
         public void Turn(EDirection direction)
@@ -22,7 +25,7 @@ namespace Tanks
 
         public void Move()
         {
-            TryMove();
+            TryMove(kolobokSpeed);
         }
 
     }

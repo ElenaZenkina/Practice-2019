@@ -26,7 +26,6 @@ namespace Tanks
                 var rows = stats[i].Split(',');
                 dgvStat.Rows.Add(rows[0], rows[1], rows[2]);
             }
-            
 
         }
     }

@@ -45,10 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bullet.cs" />
-    <Compile Include="EDirection.cs" />
-    <Compile Include="Game.cs" />
-    <Compile Include="Kolobok.cs" />
     <Compile Include="KolobokView.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -56,8 +52,6 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ini.cs" />
-    <Compile Include="PackmanController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stat.cs">
@@ -66,9 +60,7 @@
     <Compile Include="Stat.Designer.cs">
       <DependentUpon>Stat.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tank.cs" />
     <Compile Include="TankView.cs" />
-    <Compile Include="Unit.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -111,10 +103,17 @@
     <None Include="Resources\wall.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\empty.png" />
+    <None Include="Resources\bullet.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\bullet.png" />
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{230a4446-ac80-4a45-8ffe-be9fc98007c1}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Controller\Controller.csproj">
+      <Project>{27a86619-71f7-46aa-81d3-6e5aaf837cb1}</Project>
+      <Name>Controller</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
